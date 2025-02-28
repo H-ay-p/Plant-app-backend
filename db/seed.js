@@ -1,21 +1,36 @@
 const db = require("./connection.js");
 
-// NOTE - should cuisine be in there?
+// NOTES - should cuisine be in there? check foreign and primary keys setup
 
 function seed() {
   return db
-    .query("DROP TABLE IF EXISTS users;")
+    .query("DROP TABLE IF EXISTS zones;")
+    .then(() => {
+      return db.query("DROP TABLE IF EXISTS favourited_plants;");
+    })
+    .then(() => {
+      return db.query("DROP TABLE IF EXISTS owned_plants;");
+    })
     .then(() => {
       return db.query("DROP TABLE IF EXISTS plants;");
     })
     .then(() => {
-      return db.query("DROP TABLE IF EXISTS plants_owned;");
+      return db.query("DROP TABLE IF EXISTS users;");
     })
     .then(() => {
       return createUsers();
     })
     .then(() => {
       return createPlants();
+    })
+    .then(() => {
+      return createOwnedPlants();
+    })
+    .then(() => {
+      return createFavouritedPlants();
+    })
+    .then(() => {
+      return createZones();
     });
 }
 
@@ -31,8 +46,9 @@ function createUsers() {
 
 function createPlants() {
   return db.query(
-    `CREATE TABLE plants(
-    id INT NOT NULL,
+    `
+    CREATE TABLE plants(
+    plant_id INT PRIMARY KEY,
     common_name VARCHAR (40) NOT NULL,
     sci_name VARCHAR (40),
     type VARCHAR (20),
@@ -59,6 +75,35 @@ function createPlants() {
     default_image VARCHAR
     )`
   );
+}
+
+function createOwnedPlants() {
+  return db.query(`
+    CREATE TABLE owned_plants(
+    owned_plant_key SERIAL PRIMARY KEY,
+    user_key INT REFERENCES users(user_id),
+    plant_key INT REFERENCES plants(plant_id))
+`);
+}
+
+function createFavouritedPlants() {
+  return db.query(`
+      CREATE TABLE favourited_plants(
+      favourite_plant_key SERIAL PRIMARY KEY,
+      user_key INT REFERENCES users(user_id),
+      plant_key INT REFERENCES plants(plant_id))
+  `);
+}
+
+function createZones() {
+  return db.query(`
+        CREATE TABLE zones(
+        zone_key SERIAL PRIMARY KEY,
+        user_key INT REFERENCES users(user_id),
+        owned_plant_key INT REFERENCES owned_plants(owned_plant_key),
+        is_outdoor BOOLEAN,
+        sun_level VARCHAR (20),
+        zone_name VARCHAR)`);
 }
 
 module.exports = seed;
