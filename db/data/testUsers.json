@@ -1,0 +1,29 @@
+{
+  "users": [
+    {
+      "username": "ReymundoCancer",
+      "email": "Reymundo15@yahoo.com",
+      "location": [51.633476273314955, -0.765394936606981]
+    },
+    {
+      "username": "IgnatiusTaurus",
+      "email": "Ignatius_Thiel@yahoo.com",
+      "location": [51.65517222915666, -1.6943713200557795]
+    },
+    {
+      "username": "MaudeCancer",
+      "email": "Maude.Huels19@gmail.com",
+      "location": [51.73006328443661, -1.5869138524336677]
+    },
+    {
+      "username": "ClairCancer",
+      "email": "Clair_OKeefe-Harber49@hotmail.com",
+      "location": [52.525316145488034, -0.6362094950458186]
+    },
+    {
+      "username": "PearlieLeo",
+      "email": "Pearlie.Witting@hotmail.com",
+      "location": [51.83689142217352, -1.4513483183031894]
+    }
+  ]
+}
