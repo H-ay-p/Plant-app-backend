@@ -1,6 +1,7 @@
 import fetch from "node-fetch";
 import fs from "fs";
 import ids from "./plantIDs.json" with {type: "json"};
+import { get } from "https";
 
 // const tokenTrefle = "LUrFGpnR-VMuptTRPwFqm1aL_leJsFROMxGlN1rh-w8";
 
@@ -43,9 +44,11 @@ getPlantById(id))
 
 getPlants()
 
-
-async function getWeatehr() {
-  const response = await fetch(
-    ``
-  )
+function getWeather() {
+  fetch("http://api.weatherapi.com/v1/forecast")
+    .then(response => response.json())
+    .then(json => console.log(json))
+    .catch(error => console.error("Error fetching weather data:", error));
 }
+
+module.exports = getWeather
