@@ -44,4 +44,8 @@ getPlantById(id))
 getPlants()
 
 
-
+async function getWeatehr() {
+  const response = await fetch(
+    ``
+  )
+}
