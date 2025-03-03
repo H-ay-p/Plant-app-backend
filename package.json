@@ -6,11 +6,12 @@
   },
   "dependencies": {
     "axios": "^1.8.1",
-    "node-fetch": "^3.3.2",
-    "pg": "^8.13.1",
-    "superagent": "^10.1.1",
+    "dotenv": "^16.4.7",
     "express": "^4.21.2",
-    "nodemon": "^3.1.9"
+    "node-fetch": "^3.3.2",
+    "nodemon": "^3.1.9",
+    "pg": "^8.13.1",
+    "superagent": "^10.1.1"
   },
   "name": "plantapp",
   "version": "1.0.0",
@@ -19,6 +20,7 @@
   "scripts": {
     "test": "jest",
     "setup-db": "psql -f ./db/setup.sql",
+    "seed": "node ./db/run-seed",
     "seed-test": "NODE_ENV=production npm run seed",
     "seed-prod": "NODE_ENV=test npm run seed"
   },
