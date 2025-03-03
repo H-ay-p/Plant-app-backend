@@ -1,8 +1,10 @@
+const format = require("pg-format");
 const db = require("./connection.js");
+const { convertValuesToArray, handlePlantData } = require("./utils.js");
 
 // NOTES - should cuisine be in there? check foreign and primary keys setup
 
-function seed() {
+function seed(users, plants) {
   return db
     .query("DROP TABLE IF EXISTS zones;")
     .then(() => {
@@ -31,6 +33,22 @@ function seed() {
     })
     .then(() => {
       return createZones();
+    })
+    .then(() => {
+      return db.query(
+        format(
+          "INSERT INTO users (username, email, geolocation) VALUES %L",
+          convertValuesToArray(users.users)
+        )
+      );
+    })
+    .then(() => {
+      return db.query(
+        format(
+          `INSERT INTO plants (plant_id, common_name, sci_name, type, cycle, attracts, watering, maintenance, growth_rate, drought_tolerant, thorny, invasive, tropical, care_level, pest_resistant, flowers, flowering_season, edible_fruit, harvest_season, edible_leaf, cuisine, poisonous_to_humans, poisonous_to_pets, description, default_image) VALUES %L`,
+          handlePlantData(plants)
+        )
+      );
     });
 }
 
@@ -46,16 +64,15 @@ function createUsers() {
 
 function createPlants() {
   return db.query(
-    `
-    CREATE TABLE plants(
+    `CREATE TABLE plants(
     plant_id INT PRIMARY KEY,
-    common_name VARCHAR (40) NOT NULL,
-    sci_name VARCHAR (40),
+    common_name VARCHAR (90) NOT NULL,
+    sci_name VARCHAR (90),
     type VARCHAR (20),
     cycle VARCHAR (20),
     attracts VARCHAR,
     watering VARCHAR (20),
-    maintainance VARCHAR (20),
+    maintenance VARCHAR (20),
     growth_rate VARCHAR (20),
     drought_tolerant BOOLEAN,
     thorny BOOLEAN,
