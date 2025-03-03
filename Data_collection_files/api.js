@@ -1,6 +1,7 @@
 import fetch from "node-fetch";
 import fs from "fs";
 import ids from "./plantIDs.json" with {type: "json"};
+import { get } from "https";
 
 // const tokenTrefle = "LUrFGpnR-VMuptTRPwFqm1aL_leJsFROMxGlN1rh-w8";
 
@@ -50,5 +51,4 @@ function getWeather() {
     .catch(error => console.error("Error fetching weather data:", error));
 }
 
-
-module.exports = getWeather;
+module.exports = getWeather
