@@ -99,7 +99,8 @@ function createOwnedPlants() {
     CREATE TABLE owned_plants(
     owned_plant_key SERIAL PRIMARY KEY,
     user_key INT REFERENCES users(user_id),
-    plant_key INT REFERENCES plants(plant_id))
+    plant_key INT REFERENCES plants(plant_id),
+    last_watered DATE)
 `);
 }
 
