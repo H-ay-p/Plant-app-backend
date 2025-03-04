@@ -1,7 +1,4 @@
 const { convertValuesToArray, handlePlantData } = require("../db/utils");
-const plants = require("../db/data/plantsTestTEMP.json");
-=======
-
 const plants = require("../db/data/plants.json");
 const zones = require("../db/data/zones.json");
 const ownedPlants = require("../db/data/ownedPlants.json");
@@ -17,12 +14,12 @@ describe("convert values to array", () => {
   });
 });
 
-describe.skip("handlePlantData", () => {
+describe("handlePlantData", () => {
   test("should return an array", () => {
     expect(Array.isArray(handlePlantData(plants))).toBe(true);
   });
   test("should return arrays of the correct length", () => {
-    expect(handlePlantData(plants)[0].length).toBe(25);
+    expect(handlePlantData(plants)[0].length).toBe(26);
   });
 });
 
