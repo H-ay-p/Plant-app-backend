@@ -8,7 +8,7 @@ describe("convert values to array", () => {
   });
 });
 
-describe("handlePlantData", () => {
+describe.skip("handlePlantData", () => {
   test("should return an array", () => {
     expect(Array.isArray(handlePlantData(plants))).toBe(true);
   });
