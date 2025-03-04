@@ -1,0 +1,16 @@
+{
+  "zones": [
+    {
+      "user": 2,
+      "is_outdoor": true,
+      "sun_level": "high",
+      "zone_name": "balcony"
+    },
+    {
+      "user": 5,
+      "is_outdoor": false,
+      "sun_level": "low",
+      "zone_name": "living room"
+    }
+  ]
+}

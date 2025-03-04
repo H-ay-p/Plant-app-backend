@@ -1,0 +1,6 @@
+{
+  "plants": [
+    { "user": 2, "plant": 12 },
+    { "user": 5, "plant": 5 }
+  ]
+}
