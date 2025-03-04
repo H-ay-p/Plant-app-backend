@@ -4,7 +4,7 @@ const { convertValuesToArray, handlePlantData } = require("./utils.js");
 
 // NOTES - should cuisine be in there? check foreign and primary keys setup
 
-function seed(users, plants, zones) {
+function seed(users, plants, zones, ownedPlants, favePlants) {
   return db
     .query("DROP TABLE IF EXISTS owned_plants CASCADE")
     .then(() => {
@@ -45,7 +45,7 @@ function seed(users, plants, zones) {
     .then(() => {
       return db.query(
         format(
-          `INSERT INTO plants (plant_id, common_name, sci_name, type, cycle, attracts, watering, maintenance, growth_rate, drought_tolerant, thorny, invasive, tropical, care_level, pest_resistant, flowers, flowering_season, edible_fruit, harvest_season, edible_leaf, cuisine, poisonous_to_humans, poisonous_to_pets, description, default_image) VALUES %L`,
+          `INSERT INTO plants (plant_id, common_name, sci_name, type, cycle, attracts, watering,sunlight ,maintenance, growth_rate, drought_tolerant, thorny, invasive, tropical, care_level, pest_resistant, flowers, flowering_season, edible_fruit, harvest_season, edible_leaf, cuisine, poisonous_to_humans, poisonous_to_pets, description, default_image) VALUES %L`,
           handlePlantData(plants)
         )
       );
@@ -53,8 +53,25 @@ function seed(users, plants, zones) {
     .then(() => {
       return db.query(
         format(
-          "INSERT INTO zones (user_key, is_outdoor, sun_level, zone_name) VALUES %L",
+          `INSERT INTO zones (user_key, is_outdoor, sun_level, zone_name) VALUES %L`,
           convertValuesToArray(zones.zones)
+        )
+      );
+    })
+    .then(() => {
+      return db.query(
+        format(
+          `INSERT INTO owned_plants (user_key, plant_key, zone_key, last_watered) VALUES %L`,
+
+          convertValuesToArray(ownedPlants.plants)
+        )
+      );
+    })
+    .then(() => {
+      return db.query(
+        format(
+          `INSERT INTO favourited_plants (user_key, plant_key) VALUES %L`,
+          convertValuesToArray(favePlants.plants)
         )
       );
     });
@@ -80,6 +97,7 @@ function createPlants() {
     cycle VARCHAR (20),
     attracts VARCHAR,
     watering VARCHAR (20),
+    sunlight VARCHAR,
     maintenance VARCHAR (20),
     growth_rate VARCHAR (20),
     drought_tolerant BOOLEAN,
@@ -109,7 +127,7 @@ function createOwnedPlants() {
     user_key INT,
     plant_key INT,
     zone_key INT,
-    last_watered DATE,
+    last_watered VARCHAR,
     FOREIGN KEY (user_key) REFERENCES users(user_id),
     FOREIGN KEY (plant_key) REFERENCES plants(plant_id),
     FOREIGN KEY (zone_key) REFERENCES zones(zone_id))

@@ -1,12 +1,19 @@
 const { convertValuesToArray, handlePlantData } = require("../db/utils");
 const plants = require("../db/data/plantsTestTEMP.json");
-// const { expect } = require("playwright/test");
+=======
+
+const plants = require("../db/data/plants.json");
 const zones = require("../db/data/zones.json");
+const ownedPlants = require("../db/data/ownedPlants.json");
+const favePlants = require("../db/data/favePlants.json");
 
-
-describe.skip("convert values to array", () => {
+describe("convert values to array", () => {
   test("should return an array", () => {
-    expect(Array.isArray(convertValuesToArray(zones.zones))).toBe(true);
+    console.log(
+      convertValuesToArray(ownedPlants.plants),
+      convertValuesToArray(favePlants.plants)
+    );
+    expect(Array.isArray(convertValuesToArray(ownedPlants.plants))).toBe(true);
   });
 });
 
