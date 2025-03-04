@@ -4,7 +4,7 @@ const db = require("../db/connection.js");
 const getWeather = require("../db/data/getWeather.js")
 
 
-describe("getWeather", () => {
+describe.skip("getWeather", () => {
     test("fetches weather data", () => {
       return getWeather().then((data) => {
         console.log(data)

@@ -17,7 +17,7 @@
   "version": "1.0.0",
   "description": "package json for plant app",
   "main": "listen.js",
-    "scripts": {
+  "scripts": {
     "test": "jest",
     "setup-db": "psql -f ./db/setup.sql",
     "seed": "node ./db/run-seed",
