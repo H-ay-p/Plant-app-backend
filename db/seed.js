@@ -45,7 +45,7 @@ function seed(users, plants, zones, ownedPlants, favePlants) {
     .then(() => {
       return db.query(
         format(
-          `INSERT INTO plants (plant_id, common_name, sci_name, type, cycle, attracts, watering, maintenance, growth_rate, drought_tolerant, thorny, invasive, tropical, care_level, pest_resistant, flowers, flowering_season, edible_fruit, harvest_season, edible_leaf, cuisine, poisonous_to_humans, poisonous_to_pets, description, default_image) VALUES %L`,
+          `INSERT INTO plants (plant_id, common_name, sci_name, type, cycle, attracts, watering,sunlight ,maintenance, growth_rate, drought_tolerant, thorny, invasive, tropical, care_level, pest_resistant, flowers, flowering_season, edible_fruit, harvest_season, edible_leaf, cuisine, poisonous_to_humans, poisonous_to_pets, description, default_image) VALUES %L`,
           handlePlantData(plants)
         )
       );
@@ -97,6 +97,7 @@ function createPlants() {
     cycle VARCHAR (20),
     attracts VARCHAR,
     watering VARCHAR (20),
+    sunlight VARCHAR,
     maintenance VARCHAR (20),
     growth_rate VARCHAR (20),
     drought_tolerant BOOLEAN,

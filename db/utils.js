@@ -27,6 +27,7 @@ function handlePlantData(plants) {
     newPlant.cycle = plant.cycle;
     newPlant.attracts = plant.attracts[0];
     newPlant.watering = plant.watering;
+    newPlant.sunlight = plant.sunlight[0];
     newPlant.maintenance = plant.maintenance;
     newPlant.growth_rate = plant.growth_rate;
     newPlant.drought_tolerant = plant.drought_tolerant;
