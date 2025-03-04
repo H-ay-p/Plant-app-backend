@@ -1,7 +1,6 @@
 const { convertValuesToArray, handlePlantData } = require("../db/utils");
 const plants = require("../db/data/plantsTestTEMP.json");
 // const { expect } = require("playwright/test");
-
 const zones = require("../db/data/zones.json");
 
 

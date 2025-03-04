@@ -16,4 +16,16 @@ const fetchUserById = (user_id) => {
     });
     }
 
-module.exports = {fetchUserById}
+    const addUser = (username, email, geolocation) => {
+        return db
+        .query(`INSERT INTO users (username, email, geolocation) VALUES ($1, $2, $3) RETURNING *`,
+            [username, email, geolocation]
+        )
+        .then(({rows}) => {
+            return rows[0]
+        })
+     }
+
+
+
+module.exports = {fetchUserById, addUser}

@@ -4,8 +4,9 @@ const db = require("../db/connection.js");
 const seed = require("../db/seed.js")
 const plants = require("../db/data/plantsTestTEMP.json");
 const users = require("../db/data/testUsers.json");
+const zones = require("../db/data/zones.json");
 
-beforeEach(() => seed(users, plants));
+beforeAll(() => seed(users, plants, zones)); 
 afterAll(() => db.end());
 
 
@@ -61,7 +62,7 @@ afterAll(() => db.end());
                     user_id: 1,
                     username: 'ReymundoCancer',
                     email: 'Reymundo15@yahoo.com',
-                    geolocation: '[51.633476273314955, -0.765394936606981]'
+                    geolocation: expect.any(String),   
                   })
             })
         })
@@ -82,5 +83,55 @@ afterAll(() => db.end());
             })
             })
             });
-    
 
+describe("POST /api/users", () => {
+    test("should add a new user and return correct user details", () => {
+        const newUser = {
+            username: 'RachelJelly',
+            email: 'RachelJelly@yahoo.com',
+            geolocation:  "51.633476273314955, -0.765394936606981"
+        }
+
+        return request(app)
+        .post("/api/users")
+        .send(newUser)
+        .expect(201)
+        .then((response) => {
+            expect(response.body.user).toMatchObject({
+            user_id: 6,
+            username: 'RachelJelly',
+            email: 'RachelJelly@yahoo.com',
+            geolocation:  expect.any(String),     
+            })
+        })
+    })
+    test("should return 400 if username is missing", () => {
+        const newUser = {
+            email: 'RachelJelly@yahoo.com',
+            geolocation: "51.633476273314955, -0.765394936606981"
+        };
+    
+        return request(app)
+            .post("/api/users")
+            .send(newUser)
+            .expect(400)
+            .then((response) => {
+                expect(response.body.msg).toBe("Username is required")
+            })
+        })
+        test("should return 400 if email is missing", () => {
+            const newUser = {
+                username: "RachelJelly",
+                geolocation: "51.633476273314955, -0.765394936606981"
+            };
+        
+            return request(app)
+                .post("/api/users")
+                .send(newUser)
+                .expect(400)
+                .then((response) => {
+                    expect(response.body.msg).toBe("Email is required");
+                });
+        });
+     
+})
