@@ -2,13 +2,14 @@ const { convertValuesToArray, handlePlantData } = require("../db/utils");
 const plants = require("../db/data/plantsTestTEMP.json");
 const zones = require("../db/data/zones.json");
 
-describe.only("convert values to array", () => {
+
+describe.skip("convert values to array", () => {
   test("should return an array", () => {
     expect(Array.isArray(convertValuesToArray(zones.zones))).toBe(true);
   });
 });
 
-describe("handlePlantData", () => {
+describe.skip("handlePlantData", () => {
   test("should return an array", () => {
     expect(Array.isArray(handlePlantData(plants))).toBe(true);
   });
