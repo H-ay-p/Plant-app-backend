@@ -6,7 +6,7 @@ const { convertValuesToArray, handlePlantData } = require("./utils.js");
 
 function seed(users, plants, zones) {
   return db
-    .query("DROP TABLE IF EXISTS owned_plants;")
+    .query("DROP TABLE IF EXISTS owned_plants CASCADE")
     .then(() => {
       return db.query("DROP TABLE IF EXISTS favourited_plants;");
     })
