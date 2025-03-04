@@ -1,5 +1,7 @@
 const { convertValuesToArray, handlePlantData } = require("../db/utils");
 const plants = require("../db/data/plantsTestTEMP.json");
+// const { expect } = require("playwright/test");
+
 const zones = require("../db/data/zones.json");
 
 
@@ -17,3 +19,5 @@ describe.skip("handlePlantData", () => {
     expect(handlePlantData(plants)[0].length).toBe(25);
   });
 });
+
+
