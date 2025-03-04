@@ -4,7 +4,7 @@ const { convertValuesToArray, handlePlantData } = require("./utils.js");
 
 // NOTES - should cuisine be in there? check foreign and primary keys setup
 
-function seed(users, plants) {
+function seed(users, plants, zones) {
   return db
     .query("DROP TABLE IF EXISTS owned_plants;")
     .then(() => {
@@ -47,6 +47,14 @@ function seed(users, plants) {
         format(
           `INSERT INTO plants (plant_id, common_name, sci_name, type, cycle, attracts, watering, maintenance, growth_rate, drought_tolerant, thorny, invasive, tropical, care_level, pest_resistant, flowers, flowering_season, edible_fruit, harvest_season, edible_leaf, cuisine, poisonous_to_humans, poisonous_to_pets, description, default_image) VALUES %L`,
           handlePlantData(plants)
+        )
+      );
+    })
+    .then(() => {
+      return db.query(
+        format(
+          "INSERT INTO zones (user_key, is_outdoor, sun_level, zone_name) VALUES %L",
+          convertValuesToArray(zones.zones)
         )
       );
     });
@@ -98,9 +106,9 @@ function createOwnedPlants() {
   return db.query(`
     CREATE TABLE owned_plants(
     owned_plant_key SERIAL PRIMARY KEY,
-    user_key INT ,
-    plant_key INT ,
-    zone_key INT ,
+    user_key INT,
+    plant_key INT,
+    zone_key INT,
     last_watered DATE,
     FOREIGN KEY (user_key) REFERENCES users(user_id),
     FOREIGN KEY (plant_key) REFERENCES plants(plant_id),
