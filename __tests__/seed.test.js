@@ -1,10 +1,12 @@
 const db = require("../db/connection");
 const seed = require("../db/seed");
-const plants = require("../db/data/plantsTestTEMP.json");
+const plants = require("../db/data/plantsTest.json");
 const users = require("../db/data/testUsers.json");
 const zones = require("../db/data/zones.json");
+const ownedPlants = require("../db/data/ownedPlants.json");
+const favePlants = require("../db/data/favePlants.json");
 
-beforeAll(() => seed(users, plants, zones));
+beforeAll(() => seed(users, plants, zones, ownedPlants, favePlants));
 afterAll(() => db.end());
 
 describe("seed", () => {
