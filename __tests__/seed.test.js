@@ -2,8 +2,9 @@ const db = require("../db/connection");
 const seed = require("../db/seed");
 const plants = require("../db/data/plantsTestTEMP.json");
 const users = require("../db/data/testUsers.json");
+const zones = require("../db/data/zones.json");
 
-beforeAll(() => seed(users, plants));
+beforeAll(() => seed(users, plants, zones));
 afterAll(() => db.end());
 
 describe("seed", () => {

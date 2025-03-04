@@ -1,0 +1,6 @@
+{
+  "plants": [
+    { "user": 5, "plant": 12, "zone": 1, "last_watered": "2025-02-27" },
+    { "user": 2, "plant": 5, "zone": 2, "last_watered": "2025-02-02" }
+  ]
+}
