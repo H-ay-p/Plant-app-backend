@@ -6,12 +6,12 @@ const { convertValuesToArray, handlePlantData } = require("./utils.js");
 
 function seed(users, plants) {
   return db
-    .query("DROP TABLE IF EXISTS zones;")
+    .query("DROP TABLE IF EXISTS owned_plants;")
     .then(() => {
       return db.query("DROP TABLE IF EXISTS favourited_plants;");
     })
     .then(() => {
-      return db.query("DROP TABLE IF EXISTS owned_plants;");
+      return db.query("DROP TABLE IF EXISTS zones;");
     })
     .then(() => {
       return db.query("DROP TABLE IF EXISTS plants;");
