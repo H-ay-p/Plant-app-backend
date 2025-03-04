@@ -32,4 +32,22 @@ afterAll(() => db.end());
         expect(plant.watering).toEqual("Average")
       })
   })
-})
+    test("400: id not a number", () => {
+        return request(app)
+        .get("/api/plants/hello")
+        .expect(400)
+        .then((response) => {
+            expect(response.body.error).toBe("Bad Request");
+        });
+    });
+    test("404: no article with that id number", () => {
+        return request(app)
+        .get("/api/articles/9999999999")
+        .expect(404)
+        .then((response) => {
+        console.log(response)
+        expect(response.body.error).toBe("Endpoint not found");
+        })
+        })
+        });
+

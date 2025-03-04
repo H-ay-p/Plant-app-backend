@@ -17,3 +17,5 @@ describe.skip("handlePlantData", () => {
     expect(handlePlantData(plants)[0].length).toBe(25);
   });
 });
+
+
