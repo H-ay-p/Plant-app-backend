@@ -3,7 +3,7 @@ const express = require("express");
 const app = express();
 const endpoints = require("./endpoints.json")
 const {getPlantByID} = require("./controllers/plantsController")
-
+const {getUserByID} = require("./controllers/usersController")
 
 app.use(express.json());
 
@@ -13,6 +13,8 @@ app.get("/api", (req, res) => {
 });
 
 app.get("/api/plants/:plant_id", getPlantByID)
+
+app.get("/api/users/:user_id", getUserByID)
 
 app.all("*", (req, res) => {
     res.status(404).send({error: "Endpoint not found"})
