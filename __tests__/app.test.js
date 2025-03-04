@@ -28,7 +28,6 @@ afterAll(() => db.end());
       .get("/api/plants/855")
       .then(({body}) => {
       const plant = body.plant
-    //   console.log(plant)
         expect(plant.common_name).toEqual("anthurium")
         expect(plant.watering).toEqual("Average")
       })

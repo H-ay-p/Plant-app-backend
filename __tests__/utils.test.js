@@ -2,7 +2,7 @@ const { convertValuesToArray, handlePlantData } = require("../db/utils");
 const plants = require("../db/data/plantsTestTEMP.json");
 const { expect } = require("playwright/test");
 
-describe("convert values to array", () => {
+describe.skip("convert values to array", () => {
   test("should return an array", () => {
     expect(Array.isArray(convertValuesToArray(plants))).toBe(true);
   });

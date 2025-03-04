@@ -7,7 +7,6 @@ const getPlantByID = (req, res, next) => {
 
     fetchPlantById(plant_id)
     .then((plant) => {
-        console.log({plant})
         res.status(200).send({plant})
     })
     .catch((err) => {
