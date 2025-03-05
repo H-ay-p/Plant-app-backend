@@ -46,6 +46,14 @@ const addFavePlant= (user, plant) => {
     })
  }
 
+ const fetchPlants = () => {
+    return db
+    .query(
+        `SELECT * FROM plants`
+    )
+    .then(({ rows }) => {
+        return rows
+    });
+}
 
-
-module.exports = {fetchPlantById, fetchFavePlants, addFavePlant}
+module.exports = {fetchPlantById, fetchFavePlants, addFavePlant, fetchPlants}

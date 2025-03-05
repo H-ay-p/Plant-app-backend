@@ -308,3 +308,39 @@ describe("POST /api/users/:user_id/fave_plants", () => {
       });
 })
 
+//GET request get plants by search 
+//search plant by:
+// name = "common_name" : "string"
+//tropical/not tropical = "tropical": boolean
+//light level =  "sunlight": [array of "strings" ]
+//maintenance = "maintenance": "string"
+//toxicity (pets and humans) =  "poisonous_to_humans": boolean, "poisonous_to_pets": boolean
+//edible = "edible_leaf": boolean, "edible_fruit": boolean
+//flowering =  "flowers": boolean
+
+// GET /api/plants?name={name}&tropical={tropical}&light_level={light_level}&maintenance={maintenance}&toxicity={toxicity}&edible={edible}&flowering={flowering}
+
+
+//get all plants
+//filter plants function o
+
+
+
+
+describe ("GET /api/plants", () => {
+    test("should return all plants", () => {
+        return request(app)
+        .get("/api/plants")
+        .expect(200)
+        .then(({ body }) => {
+            const plants = body.plants;
+            expect(Array.isArray(plants)).toBe(true);
+            expect(plants.length).toBeGreaterThan(0);
+            plants.forEach((plant) => {
+                //maybe i should check for the properties of the search queries?
+              expect(plant).toHaveProperty("plant_id");
+              expect(plant).toHaveProperty("common_name");
+            });
+          });
+        })
+    })

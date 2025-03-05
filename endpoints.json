@@ -299,11 +299,74 @@
   }
   }, 
   "POST /api/users/:user_id/fave_plants": {
-    "description": "posts a plant to a given users faourites",
+    "description": "posts a plant to a given users favourites",
     "queries": ["user_id", "plant_id"],
     "exampleResponse": { 
       "favourite_plant_key": 4, 
       "user_key": 2, 
       "plant_key": 1001 }
+  }, 
+  "GET /api/plants": {
+    "description": "retrieves an array of all plant objects from api",
+    "queries": [],
+    "exampleResponse":
+    [{
+     " plant_id": 1821,
+      "common_name": "chamaedorea",
+      "sci_name": "Chamaedorea microspadix",
+      "type": "Palm or Cycad",
+      "cycle": "Perennial",
+      "attracts": null,
+      "watering": "Frequent",
+      "sunlight": "part shade",
+      "maintenance": "Low",
+      "growth_rate": "Low",
+      "drought_tolerant": true,
+      "thorny": false,
+     "invasive": false,
+      "tropical": false,
+     "care_level": "Medium",
+      "pest_resistant": false,
+      "flowers": true,
+     " flowering_season": null,
+      "edible_fruit": false,
+      "harvest_season": null,
+      "edible_leaf": false,
+      "cuisine": false,
+     " poisonous_to_humans": false,
+      "poisonous_to_pets": false,
+      "description": "Chamaedorea microspadix is an incredible plant species! With its slender, deep green leaves and delicate white stripes near the midrib of each leaf, it adds a unique touch to any space. It is a very low-maintenance plant, requiring little more than a misting from a spray bottle. Additionally, it is tolerant to low light, though it thrives in bright, indirect light. With fuss-free care and striking foliage, this plant makes a perfect addition to any home.",
+      "default_image": "https://perenual.com/storage/species_image/1821_chamaedorea_microspadix/small/26815590515_805ab5b081_b.jpg"
+    },
+    {
+      "plant_id": 1598,
+      "common_name": "ornamental pepper",
+     " sci_name": "Capsicum annuum 'Chinese Five Color'",
+      "type": "Fruit",
+      "cycle": "Herbaceous Perennial",
+      "attracts": null,
+      "watering": "Frequent",
+      "sunlight": "full sun",
+      "maintenance": "Low",
+      "growth_rate": "Low",
+     " drought_tolerant": false,
+      "thorny": false,
+      "invasive": false,
+      "tropical": false,
+      "care_level": "Medium",
+      "pest_resistant": false,
+     " flowers": true,
+      "flowering_season": null,
+      "edible_fruit": false,
+      "harvest_season": "Summer",
+      "edible_leaf": true,
+      "cuisine": false,
+      "poisonous_to_humans": false,
+      "poisonous_to_pets": false,
+      "description": "The ornamental pepper (Capsicum annuum 'Chinese Five Color') is an amazing plant that adds vibrancy and texture to any garden. Thanks to its unique twist on traditional peppers, this variety features five colors: dark green, creamy-white, pale yellow, orange, and red. It adds a vibrant hue to the garden with its dynamic color combination, creating an eye-catching and evocative display. This pepper produces very few fruits, making it an ideal ornamental plant. It also has a good drought tolerance, making it great for those living in dry climates. This hardy pepper is an easy-care, low-maintenance plant that brings beauty to any garden!",
+      "default_image": "noImg"
+    }
+  ]
+
   }
 }

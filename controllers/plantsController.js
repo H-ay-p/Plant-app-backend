@@ -1,4 +1,4 @@
-const {fetchPlantById, fetchFavePlants, addFavePlant} = require("../models/plantsModel")
+const {fetchPlantById, fetchFavePlants, addFavePlant, fetchPlants} = require("../models/plantsModel")
 
 
 const getPlantByID = (req, res, next) => {
@@ -37,4 +37,15 @@ const postFavePlants  = (req,res,next) => {
     })
 }
 
-module.exports = {getPlantByID, getFavePlants, postFavePlants}
+const getPlants = (req, res, next) => {
+
+    fetchPlants()
+    .then((plants) => {
+        res.status(200).send({plants})
+    })
+    .catch((err) => {
+        next(err)
+    })
+}
+
+module.exports = {getPlantByID, getFavePlants, postFavePlants, getPlants}

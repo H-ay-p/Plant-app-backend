@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 
 const endpoints = require("./endpoints.json")
-const {getPlantByID, getFavePlants, postFavePlants} = require("./controllers/plantsController")
+const {getPlantByID, getFavePlants, postFavePlants, getPlants} = require("./controllers/plantsController")
 const {getUserByID, postNewUser} = require("./controllers/usersController")
 const { getZonesByUserId ,postZone} = require("./controllers/zonesController");
 
@@ -25,6 +25,8 @@ app.get("/api/zones/:user_id", getZonesByUserId);
 app.post("/api/zones", postZone);
 
 app.get("/api/users/:user_id/fave_plants", getFavePlants);
+
+app.get("/api/plants", getPlants)
 
 app.post("/api/users/:user_id/fave_plants", postFavePlants)
 
