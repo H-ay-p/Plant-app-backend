@@ -137,7 +137,7 @@
     }
   },
   "GET /api/users/:user_id/fave_plants":{
-    "description": "retrives a given users faourited plants",
+    "description": "retrives a given users favourited plants",
     "queries": ["user_id"],
     "exampleResponse": {
       "855": {
@@ -249,5 +249,13 @@
       "xPlantSpacingRequirement": "Upgrade Plan To Supreme For Access https://perenual.com/subscription-api-pricing. Im sorry"
     }
   }
+  }, 
+  "POST /api/users/:user_id/fave_plants": {
+    "description": "posts a plant to a given users faourites",
+    "queries": ["user_id", "plant_id"],
+    "exampleResponse": { 
+      "favourite_plant_key": 4, 
+      "user_key": 2, 
+      "plant_key": 1001 }
   }
 }

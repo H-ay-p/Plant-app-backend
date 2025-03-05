@@ -36,6 +36,16 @@ const fetchFavePlants = (user_id) => {
     });
 }
 
+const addFavePlant= (user, plant) => {
+    return db
+    .query(`INSERT INTO favourited_plants (user_key, plant_key) VALUES ($1, $2) RETURNING *`,
+        [user, plant]
+    )
+    .then(({rows}) => {
+        return rows[0]
+    })
+ }
 
 
-module.exports = {fetchPlantById, fetchFavePlants}
+
+module.exports = {fetchPlantById, fetchFavePlants, addFavePlant}
