@@ -136,7 +136,7 @@ describe("POST /api/users", () => {
         expect(response.body.msg).toBe("Email is required");
       });
   });
-})
+});
 
 describe("getZonesByUserID", () => {
   test("200: responds with correct zone information", () => {
@@ -157,71 +157,138 @@ describe("getZonesByUserID", () => {
           sun_level: "part shade",
           zone_name: "kitchen",
         });
-        test("400: id not a number", () => {
-            return request(app)
-              .get("/api/zones/hello")
-              .expect(400)
-              .then((response) => {
-                expect(response.body.error).toBe("Bad Request");
-              });
-          });
-          test("404: user has no zones", () => {
-            return request(app)
-              .get("/api/zones/9")
-              .expect(404)
-              .then((response) => {
-                expect(response.body.error).toBe("No zones available for that user");
-              });
-          });
-          })
-        })
-    })
-
+      });
+  });
+  test("400: id not a number", () => {
+    return request(app)
+      .get("/api/zones/hello")
+      .expect(400)
+      .then((response) => {
+        expect(response.body.error).toBe("Bad Request");
+      });
+  });
+  test("404: user has no zones", () => {
+    return request(app)
+      .get("/api/zones/9")
+      .expect(404)
+      .then((response) => {
+        expect(response.body.error).toBe("No zones available for that user");
+      });
+  });
+});
 
 describe("GET /api/users/:user_id/fave_plants", () => {
-    test("200: should return users favourite plants where there is more than one", () => {
-        return request(app)
-        .get("/api/users/2/fave_plants")
-        .expect(200)
-        .then(({body}) => {
-            const favePlants = body.plants
+  test("200: should return users favourite plants where there is more than one", () => {
+    return request(app)
+      .get("/api/users/2/fave_plants")
+      .expect(200)
+      .then(({ body }) => {
+        const favePlants = body.plants;
         expect(Array.isArray(favePlants)).toBe(true);
-        expect(favePlants.length).toBeGreaterThan(0); 
+        expect(favePlants.length).toBeGreaterThan(0);
         favePlants.forEach((plant) => {
-            expect(plant).toHaveProperty("plant_id");
-            expect(plant).toHaveProperty("common_name");
-        })}
-     ) })
-     test("200: should return users favourite plants where there is only one", () => {
-        return request(app)
-        .get("/api/users/5/fave_plants")
-        .expect(200)
-        .then(({body}) => {
-            const favePlants = body.plants
+          expect(plant).toHaveProperty("plant_id");
+          expect(plant).toHaveProperty("common_name");
+        });
+      });
+  });
+  test("200: should return users favourite plants where there is only one", () => {
+    return request(app)
+      .get("/api/users/5/fave_plants")
+      .expect(200)
+      .then(({ body }) => {
+        const favePlants = body.plants;
         expect(Array.isArray(favePlants)).toBe(true);
-        expect(favePlants.length).toBeGreaterThan(0); 
+        expect(favePlants.length).toBeGreaterThan(0);
         favePlants.forEach((plant) => {
-            expect(plant).toHaveProperty("plant_id");
-            expect(plant).toHaveProperty("common_name");
-        })}
-     ) })
-     test("400: id not a number", () => {
-        return request(app)
-        .get("/api/users/hello/fave_plants")
-        .expect(400)
-        .then((response) => {
-            expect(response.body.error).toBe("Bad Request");
+          expect(plant).toHaveProperty("plant_id");
+          expect(plant).toHaveProperty("common_name");
         });
-    });
-        test("404: no favourite plants for that user", () => {
-            return request(app)
-            .get("/api/users/3/fave_plants")
-            .expect(404)
-            .then((response) => {
-            expect(response.body.error).toBe("No plants favourited");
-            })
-            })
+      });
+  });
+  test("400: id not a number", () => {
+    return request(app)
+      .get("/api/users/hello/fave_plants")
+      .expect(400)
+      .then((response) => {
+        expect(response.body.error).toBe("Bad Request");
+      });
+  });
+  test("404: no favourite plants for that user", () => {
+    return request(app)
+      .get("/api/users/3/fave_plants")
+      .expect(404)
+      .then((response) => {
+        expect(response.body.error).toBe("No plants favourited");
+      });
+  });
+});
+
+describe("POST /api/zones", () => {
+  test("should add a new zone and return correct zone details", () => {
+    const newZone = {
+      user_key: 5,
+      is_outdoor: true,
+      sun_level: "full shade",
+      zone_name: "garden",
+    };
+
+    return request(app)
+      .post("/api/zones")
+      .send(newZone)
+      .expect(201)
+      .then((response) => {
+        expect(response.body.zone).toMatchObject({
+          user_key: 5,
+          is_outdoor: true,
+          sun_level: "full shade",
+          zone_name: "garden",
         });
+      });
+  });
+  test("returns 404 if passed a user that doesn't exist", () => {
+    const newZone = {
+      user_key: 80,
+      is_outdoor: true,
+      sun_level: "full shade",
+      zone_name: "alotment",
+    };
 
+    return request(app)
+      .post("/api/zones")
+      .send(newZone)
+      .expect(404)
+      .then((response) => {
+        expect(response.body.error).toBe("Not Found");
+      });
+  });
+  test("should return 400 if zone name is missing", () => {
+    const newZone = {
+      user_key: 8,
+      is_outdoor: true,
+      sun_level: "full shade",
+    };
 
-
+    return request(app)
+      .post("/api/zones")
+      .send(newZone)
+      .expect(400)
+      .then((response) => {
+        expect(response.body.msg).toBe("Zone name is required");
+      });
+  });
+  test("should return 400 if user key is missing", () => {
+    const newZone = {
+      is_outdoor: true,
+      sun_level: "full shade",
+      zone_name: "garden",
+    };
+    return request(app)
+      .post("/api/zones")
+      .send(newZone)
+      .expect(400)
+      .then((response) => {
+        expect(response.body.msg).toBe("User id is required");
+      });
+  });
+});

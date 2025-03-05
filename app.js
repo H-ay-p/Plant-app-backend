@@ -1,11 +1,12 @@
 const express = require("express");
 const app = express();
-const endpoints = require("./endpoints.json")
-const {getPlantByID, getFavePlants} = require("./controllers/plantsController")
-const {getUserByID, postNewUser} = require("./controllers/usersController")
-const { getZonesByUserId } = require("./controllers/zonesController");
-
-
+const endpoints = require("./endpoints.json");
+const {
+  getPlantByID,
+  getFavePlants,
+} = require("./controllers/plantsController");
+const { getUserByID, postNewUser } = require("./controllers/usersController");
+const { getZonesByUserId, postZone } = require("./controllers/zonesController");
 
 app.use(express.json());
 
@@ -21,7 +22,9 @@ app.post("/api/users", postNewUser);
 
 app.get("/api/zones/:user_id", getZonesByUserId);
 
-app.get("/api/users/:user_id/fave_plants", getFavePlants)
+app.post("/api/zones", postZone);
+
+app.get("/api/users/:user_id/fave_plants", getFavePlants);
 
 app.all("*", (req, res) => {
   res.status(404).send({ error: "Endpoint not found" });
