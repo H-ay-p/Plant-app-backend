@@ -14,4 +14,15 @@ const fetchZonesByUserID = (user_id) => {
     });
 };
 
-module.exports = { fetchZonesByUserID };
+const insertZone = (user_key, is_outdoor, sun_level, zone_name) => {
+  return db
+    .query(
+      `INSERT INTO zones (user_key,is_outdoor,sun_level,zone_name) VALUES ($1,$2,$3,$4 )RETURNING *`,
+      [user_key, is_outdoor, sun_level, zone_name]
+    )
+    .then(({ rows }) => {
+      return rows[0];
+    });
+};
+
+module.exports = { fetchZonesByUserID, insertZone };
