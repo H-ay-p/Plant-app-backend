@@ -27,6 +27,15 @@ function handlePlantData(plants) {
     newPlant.cycle = plant.cycle;
     newPlant.watering = plant.watering;
     newPlant.sunlight = plant.sunlight[0];
+    if (newPlant.sunlight === "full shade") {
+      newPlant.sunlight = "deep shade";
+    }
+    if (
+      newPlant.sunlight === "filtered shade" ||
+      newPlant.sunlight === "part sun/part shade"
+    ) {
+      newPlant.sunlight = "part shade";
+    }
     newPlant.maintenance = plant.maintenance;
     newPlant.growth_rate = plant.growth_rate;
     newPlant.drought_tolerant = plant.drought_tolerant;
