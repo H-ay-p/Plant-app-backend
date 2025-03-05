@@ -157,6 +157,7 @@ describe("getZonesByUserID", () => {
           sun_level: "part shade",
           zone_name: "kitchen",
         });
+
       });
   });
   test("400: id not a number", () => {
@@ -176,6 +177,7 @@ describe("getZonesByUserID", () => {
       });
   });
 });
+
 
 describe("GET /api/users/:user_id/fave_plants", () => {
   test("200: should return users favourite plants where there is more than one", () => {
@@ -292,3 +294,17 @@ describe("POST /api/zones", () => {
       });
   });
 });
+
+describe("POST /api/users/:user_id/fave_plants", () => {
+    test("should add a plant to user favourites and return correct details", () => {
+        const addPlant =  { "user": 2, "plant": 1001}
+        return request(app)
+          .post("/api/users/2/fave_plants")
+          .send(addPlant)
+          .expect(201)
+          .then((response) => {
+            expect(response.body.favePlant).toMatchObject({ favourite_plant_key: 4, user_key: 2, plant_key: 1001 });
+          });
+      });
+})
+
