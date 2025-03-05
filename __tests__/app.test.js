@@ -136,7 +136,7 @@ describe("POST /api/users", () => {
         expect(response.body.msg).toBe("Email is required");
       });
   });
-});
+})
 
 describe("getZonesByUserID", () => {
   test("200: responds with correct zone information", () => {
@@ -157,9 +157,25 @@ describe("getZonesByUserID", () => {
           sun_level: "part shade",
           zone_name: "kitchen",
         });
-
-     
-})
+        test("400: id not a number", () => {
+            return request(app)
+              .get("/api/zones/hello")
+              .expect(400)
+              .then((response) => {
+                expect(response.body.error).toBe("Bad Request");
+              });
+          });
+          test("404: user has no zones", () => {
+            return request(app)
+              .get("/api/zones/9")
+              .expect(404)
+              .then((response) => {
+                expect(response.body.error).toBe("No zones available for that user");
+              });
+          });
+          })
+        })
+    })
 
 
 describe("GET /api/users/:user_id/fave_plants", () => {
@@ -207,23 +223,5 @@ describe("GET /api/users/:user_id/fave_plants", () => {
             })
         });
 
-      });
-  });
-  test("400: id not a number", () => {
-    return request(app)
-      .get("/api/zones/hello")
-      .expect(400)
-      .then((response) => {
-        expect(response.body.error).toBe("Bad Request");
-      });
-  });
-  test("404: user has no zones", () => {
-    return request(app)
-      .get("/api/zones/9")
-      .expect(404)
-      .then((response) => {
-        expect(response.body.error).toBe("No zones available for that user");
-      });
-  });
-});
+
 
