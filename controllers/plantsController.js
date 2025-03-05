@@ -1,4 +1,4 @@
-const {fetchPlantById} = require("../models/plantsModel")
+const {fetchPlantById, fetchFavePlants} = require("../models/plantsModel")
 
 
 const getPlantByID = (req, res, next) => {
@@ -13,4 +13,17 @@ const getPlantByID = (req, res, next) => {
     })
 }
 
-module.exports = {getPlantByID}
+const getFavePlants = (req, res, next) => {
+    const {user_id} = req.params
+
+    fetchFavePlants(user_id)
+    .then((plants) => {
+        res.status(200).send({plants})
+    })
+    .catch((err) => {
+        next(err)
+    })
+}
+
+
+module.exports = {getPlantByID, getFavePlants}

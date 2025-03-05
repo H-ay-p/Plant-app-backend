@@ -16,5 +16,26 @@ const fetchPlantById = (plant_id) => {
     });
 }
 
+const fetchFavePlants = (user_id) => {
+    return db
+    .query(
+        `SELECT plants.* 
+        FROM favourited_plants
+        JOIN plants ON favourited_plants.plant_key = plants.plant_id
+        WHERE favourited_plants.user_key = $1;`, 
+       [user_id]
+    )
+    .then(({ rows }) => {
+        if (rows.length === 0) {
+            return Promise.reject({
+                status: 404,
+                msg: "No plants favourited",
+            });
+        }
+        return rows
+    });
+}
 
-module.exports = {fetchPlantById}
+
+
+module.exports = {fetchPlantById, fetchFavePlants}

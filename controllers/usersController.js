@@ -20,7 +20,6 @@ const postNewUser = (req,res,next) => {
 
     addUser(username, email, geolocation)
     .then((user) => {
-        console.log(user)
         res.status(201).send({user})
     })
     .catch((err) => {

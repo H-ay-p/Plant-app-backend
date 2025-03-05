@@ -157,6 +157,56 @@ describe("getZonesByUserID", () => {
           sun_level: "part shade",
           zone_name: "kitchen",
         });
+
+     
+})
+
+
+describe("GET /api/users/:user_id/fave_plants", () => {
+    test("200: should return users favourite plants where there is more than one", () => {
+        return request(app)
+        .get("/api/users/2/fave_plants")
+        .expect(200)
+        .then(({body}) => {
+            const favePlants = body.plants
+        expect(Array.isArray(favePlants)).toBe(true);
+        expect(favePlants.length).toBeGreaterThan(0); 
+        favePlants.forEach((plant) => {
+            expect(plant).toHaveProperty("plant_id");
+            expect(plant).toHaveProperty("common_name");
+        })}
+     ) })
+     test("200: should return users favourite plants where there is only one", () => {
+        return request(app)
+        .get("/api/users/5/fave_plants")
+        .expect(200)
+        .then(({body}) => {
+            const favePlants = body.plants
+        expect(Array.isArray(favePlants)).toBe(true);
+        expect(favePlants.length).toBeGreaterThan(0); 
+        favePlants.forEach((plant) => {
+            expect(plant).toHaveProperty("plant_id");
+            expect(plant).toHaveProperty("common_name");
+        })}
+     ) })
+     test("400: id not a number", () => {
+        return request(app)
+        .get("/api/users/hello/fave_plants")
+        .expect(400)
+        .then((response) => {
+            expect(response.body.error).toBe("Bad Request");
+        });
+    });
+        test("404: no favourite plants for that user", () => {
+            return request(app)
+            .get("/api/users/3/fave_plants")
+            .expect(404)
+            .then((response) => {
+            expect(response.body.error).toBe("No plants favourited");
+            })
+            })
+        });
+
       });
   });
   test("400: id not a number", () => {
@@ -176,3 +226,4 @@ describe("getZonesByUserID", () => {
       });
   });
 });
+
