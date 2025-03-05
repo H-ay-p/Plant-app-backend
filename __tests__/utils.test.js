@@ -6,10 +6,6 @@ const favePlants = require("../db/data/favePlants.json");
 
 describe("convert values to array", () => {
   test("should return an array", () => {
-    console.log(
-      convertValuesToArray(ownedPlants.plants),
-      convertValuesToArray(favePlants.plants)
-    );
     expect(Array.isArray(convertValuesToArray(ownedPlants.plants))).toBe(true);
   });
 });
@@ -22,5 +18,3 @@ describe("handlePlantData", () => {
     expect(handlePlantData(plants)[0].length).toBe(26);
   });
 });
-
-

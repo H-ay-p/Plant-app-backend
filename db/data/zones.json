@@ -3,13 +3,19 @@
     {
       "user": 2,
       "is_outdoor": true,
-      "sun_level": "high",
+      "sun_level": "full sun",
       "zone_name": "balcony"
+    },
+    {
+      "user": 2,
+      "is_outdoor": true,
+      "sun_level": "part shade",
+      "zone_name": "kitchen"
     },
     {
       "user": 5,
       "is_outdoor": false,
-      "sun_level": "low",
+      "sun_level": "full shade",
       "zone_name": "living room"
     }
   ]
