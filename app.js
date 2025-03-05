@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+
 const endpoints = require("./endpoints.json");
 const {
   getPlantByID,
@@ -8,7 +9,7 @@ const {
   getOwnedPlants,
 } = require("./controllers/plantsController");
 const { getUserByID, postNewUser } = require("./controllers/usersController");
-const { getZonesByUserId } = require("./controllers/zonesController");
+const { getZonesByUserId, postZone } = require("./controllers/zonesController");
 
 app.use(express.json());
 
@@ -23,6 +24,8 @@ app.get("/api/users/:user_id", getUserByID);
 app.post("/api/users", postNewUser);
 
 app.get("/api/zones/:user_id", getZonesByUserId);
+
+app.post("/api/zones", postZone);
 
 app.get("/api/users/:user_id/fave_plants", getFavePlants);
 

@@ -1,7 +1,7 @@
 {
-"GET /api": {
+  "GET /api": {
     "description": "serves up a json representation of all the available endpoints of the api"
-  }, 
+  },
   "GET /api/plants/:plant_id": {
     "description": "retrieves plant information by their id number",
     "queries": ["plant_id"],
@@ -58,7 +58,10 @@
               "yellow-white"
             ]
           },
-          { "part": "center", "color": ["orange", "white-red", "yellow-white"] },
+          {
+            "part": "center",
+            "color": ["orange", "white-red", "yellow-white"]
+          },
           { "part": "spathe", "color": ["green"] },
           { "part": "flower", "color": ["pink-red", "red-pink"] },
           { "part": "leaf", "color": ["green"] },
@@ -115,25 +118,70 @@
         "xPlantSpacingRequirement": "Upgrade Plan To Supreme For Access https://perenual.com/subscription-api-pricing. Im sorry"
       }
     }
-  }, 
-  "GET /api/users/:user_id":{
+  },
+  "GET /api/users/:user_id": {
     "description": "retrives user information for a given id number",
     "queries": ["user_id"],
     "exampleResponse": {
-        "user_id": 1,
-        "username": "ReymundoCancer",
-        "email":"Reymundo15@yahoo.com",
-       " geolocation": "expect.any(String)"  
+      "user_id": 1,
+      "username": "ReymundoCancer",
+      "email": "Reymundo15@yahoo.com",
+      " geolocation": "expect.any(String)"
     }
   },
   "POST /api/users": {
     "description": "posts a new user to users and returns user info",
     "queries": ["username", "email", "geolocation"],
-    "exampleResponse":{
-        "user_id": 6,
-        "username": "RachelJelly",
-       "email": "RachelJelly@yahoo.com",
-        "geolocation":  "expect.any(String)"     
+    "exampleResponse": {
+      "user_id": 6,
+      "username": "RachelJelly",
+      "email": "RachelJelly@yahoo.com",
+      "geolocation": "expect.any(String)"
+    }
+  },
+  "GET /api/zones/:user_id": {
+    "description": "retrives zone information for a given id number",
+    "queries": ["user_id"],
+    "exampleResponse": {
+      "zones": [
+        {
+          "user": 2,
+          "is_outdoor": true,
+          "sun_level": "full sun",
+          "zone_name": "balcony"
+        },
+        {
+          "user": 2,
+          "is_outdoor": true,
+          "sun_level": "part shade",
+          "zone_name": "kitchen"
+        }
+      ]
+    },
+    "POST /api/zones": {
+      "description": "adds a zone",
+      "exampleInput": {
+        "user_key": 5,
+        "is_outdoor": true,
+        "sun_level": "full shade",
+        "zone_name": "garden"
+      },
+      "exampleResponse": {
+        "zones": [
+          {
+            "user": 2,
+            "is_outdoor": true,
+            "sun_level": "full sun",
+            "zone_name": "balcony"
+          },
+          {
+            "user": 2,
+            "is_outdoor": true,
+            "sun_level": "part shade",
+            "zone_name": "kitchen"
+          }
+        ]
+      }
     }
   },
   "GET /api/users/:user_id/fave_plants":{

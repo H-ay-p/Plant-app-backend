@@ -152,7 +152,7 @@ function createZones() {
         user_key INT,
         is_outdoor BOOLEAN,
         sun_level VARCHAR (20),
-        zone_name VARCHAR,
+        zone_name VARCHAR NOT NULL,
         FOREIGN KEY (user_key) REFERENCES users(user_id))`);
 }
 

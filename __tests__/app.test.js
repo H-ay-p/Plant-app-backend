@@ -224,6 +224,75 @@ describe("GET /api/users/:user_id/fave_plants", () => {
   });
 });
 
+describe("POST /api/zones", () => {
+  test("should add a new zone and return correct zone details", () => {
+    const newZone = {
+      user_key: 5,
+      is_outdoor: true,
+      sun_level: "full shade",
+      zone_name: "garden",
+    };
+
+    return request(app)
+      .post("/api/zones")
+      .send(newZone)
+      .expect(201)
+      .then((response) => {
+        expect(response.body.zone).toMatchObject({
+          user_key: 5,
+          is_outdoor: true,
+          sun_level: "full shade",
+          zone_name: "garden",
+        });
+      });
+  });
+  test("returns 404 if passed a user that doesn't exist", () => {
+    const newZone = {
+      user_key: 80,
+      is_outdoor: true,
+      sun_level: "full shade",
+      zone_name: "alotment",
+    };
+
+    return request(app)
+      .post("/api/zones")
+      .send(newZone)
+      .expect(404)
+      .then((response) => {
+        expect(response.body.error).toBe("Not Found");
+      });
+  });
+  test("should return 400 if zone name is missing", () => {
+    const newZone = {
+      user_key: 8,
+      is_outdoor: true,
+      sun_level: "full shade",
+    };
+
+    return request(app)
+      .post("/api/zones")
+      .send(newZone)
+      .expect(400)
+      .then((response) => {
+        expect(response.body.msg).toBe("Zone name is required");
+      });
+  });
+  test("should return 400 if user key is missing", () => {
+    const newZone = {
+      is_outdoor: true,
+      sun_level: "full shade",
+      zone_name: "garden",
+    };
+    return request(app)
+      .post("/api/zones")
+      .send(newZone)
+      .expect(400)
+      .then((response) => {
+        expect(response.body.msg).toBe("User id is required");
+      });
+  });
+});
+
 describe("POST /api/users/:user_id/fave_plants", () => {
   test("should add a plant to user favourites and return correct details", () => {
     const addPlant = { user: 2, plant: 1001 };
