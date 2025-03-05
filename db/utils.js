@@ -36,7 +36,7 @@ function handlePlantData(plants) {
     ) {
       newPlant.sunlight = "part shade";
     }
-    newPlant.maintenance = plant.maintenance;
+    newPlant.maintenance = plant.maintenance ? plant.maintenance : "Moderate";
     newPlant.growth_rate = plant.growth_rate;
     newPlant.drought_tolerant = plant.drought_tolerant;
     newPlant.thorny = plant.thorny;
