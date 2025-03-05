@@ -2,6 +2,6 @@
   "plants": [
     { "user": 5, "plant": 855, "zone": 1, "last_watered": "2025-02-27" },
     { "user": 2, "plant": 1025, "zone": 2, "last_watered": "2025-02-02" },
-    { "user": 2, "plant": 1022, "zone": 2, "last_watered": "2025-02-02" }
+    { "user": 2, "plant": 855, "zone": 2, "last_watered": "2025-02-02" }
   ]
 }

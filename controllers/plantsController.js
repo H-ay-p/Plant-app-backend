@@ -2,6 +2,7 @@ const {
   fetchPlantById,
   fetchFavePlants,
   addFavePlant,
+  fetchOwnedPlants,
 } = require("../models/plantsModel");
 
 const getPlantByID = (req, res, next) => {
@@ -43,7 +44,7 @@ const postFavePlants = (req, res, next) => {
 const getOwnedPlants = (req, res, next) => {
   const { user_id } = req.params;
 
-  fetchFavePlants(user_id)
+  fetchOwnedPlants(user_id)
     .then((plants) => {
       res.status(200).send({ plants });
     })
