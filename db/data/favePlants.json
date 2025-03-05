@@ -1,7 +1,7 @@
 {
   "plants": [
-    { "user": 2, "plants": 1025},
-    { "user": 2, "plants": 1133},
+    { "user": 2, "plant": 1025},
+    { "user": 2, "plant": 1133},
     { "user": 5, "plant": 855 }
   ]
 }

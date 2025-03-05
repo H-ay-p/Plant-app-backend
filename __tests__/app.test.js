@@ -157,7 +157,9 @@ describe("getZonesByUserID", () => {
           sun_level: "part shade",
           zone_name: "kitchen",
         });
-        test("400: id not a number", () => {
+    })
+})
+    test("400: id not a number", () => {
             return request(app)
               .get("/api/zones/hello")
               .expect(400)
@@ -165,7 +167,7 @@ describe("getZonesByUserID", () => {
                 expect(response.body.error).toBe("Bad Request");
               });
           });
-          test("404: user has no zones", () => {
+    test("404: user has no zones", () => {
             return request(app)
               .get("/api/zones/9")
               .expect(404)
@@ -174,9 +176,6 @@ describe("getZonesByUserID", () => {
               });
           });
           })
-        })
-    })
-
 
 describe("GET /api/users/:user_id/fave_plants", () => {
     test("200: should return users favourite plants where there is more than one", () => {
@@ -223,5 +222,15 @@ describe("GET /api/users/:user_id/fave_plants", () => {
             })
         });
 
-
-
+describe("POST /api/users/:user_id/fave_plants", () => {
+    test("should add a plant to user favourites and return correct details", () => {
+        const addPlant =  { "user": 2, "plant": 1001}
+        return request(app)
+          .post("/api/users/2/fave_plants")
+          .send(addPlant)
+          .expect(201)
+          .then((response) => {
+            expect(response.body.favePlant).toMatchObject({ favourite_plant_key: 4, user_key: 2, plant_key: 1001 });
+          });
+      });
+})
