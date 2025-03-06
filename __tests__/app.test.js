@@ -157,7 +157,6 @@ describe("getZonesByUserID", () => {
           sun_level: "part shade",
           zone_name: "kitchen",
         });
-
       });
   });
   test("400: id not a number", () => {
@@ -177,7 +176,6 @@ describe("getZonesByUserID", () => {
       });
   });
 });
-
 
 describe("GET /api/users/:user_id/fave_plants", () => {
   test("200: should return users favourite plants where there is more than one", () => {
@@ -296,17 +294,72 @@ describe("POST /api/zones", () => {
 });
 
 describe("POST /api/users/:user_id/fave_plants", () => {
-    test("should add a plant to user favourites and return correct details", () => {
-        const addPlant =  { "user": 2, "plant": 1001}
-        return request(app)
-          .post("/api/users/2/fave_plants")
-          .send(addPlant)
-          .expect(201)
-          .then((response) => {
-            expect(response.body.favePlant).toMatchObject({ favourite_plant_key: 4, user_key: 2, plant_key: 1001 });
-          });
+  test("should add a plant to user favourites and return correct details", () => {
+    const addPlant = { user: 2, plant: 1001 };
+    return request(app)
+      .post("/api/users/2/fave_plants")
+      .send(addPlant)
+      .expect(201)
+      .then((response) => {
+        expect(response.body.favePlant).toMatchObject({
+          favourite_plant_key: 4,
+          user_key: 2,
+          plant_key: 1001,
+        });
       });
-})
+  });
+});
+
+describe("GET /api/users/:user_id/owned_plants", () => {
+  test("200: should return users owned plants where there is more than one", () => {
+    return request(app)
+      .get("/api/users/2/owned_plants")
+      .expect(200)
+      .then(({ body }) => {
+        const plants = body.plants;
+        expect(Array.isArray(plants)).toBe(true);
+        expect(plants.length).toBeGreaterThan(0);
+        plants.forEach((plant) => {
+          expect(plant).toHaveProperty("plant_id");
+          expect(plant).toHaveProperty("common_name");
+          expect(plant).toHaveProperty("zone_name");
+        });
+      });
+  });
+
+  test("200: should return users owned plants where there is only one", () => {
+    return request(app)
+      .get("/api/users/5/owned_plants")
+      .expect(200)
+      .then(({ body }) => {
+        const plants = body.plants;
+        expect(Array.isArray(plants)).toBe(true);
+        expect(plants.length).toBeGreaterThan(0);
+        plants.forEach((plant) => {
+          expect(plant).toHaveProperty("plant_id");
+          expect(plant).toHaveProperty("common_name");
+          expect(plant).toHaveProperty("zone_name");
+        });
+      });
+  });
+  test("400: id not a number", () => {
+    return request(app)
+      .get("/api/users/hello/owned_plants")
+      .expect(400)
+      .then((response) => {
+        expect(response.body.error).toBe("Bad Request");
+      });
+  });
+  test("404: no owned plants for that user", () => {
+    return request(app)
+      .get("/api/users/3/owned_plants")
+      .expect(404)
+      .then((response) => {
+        expect(response.body.error).toBe("No plants owned");
+      });
+  });
+});
+
 
 
 describe ("GET /api/plants", () => {
@@ -483,4 +536,22 @@ describe ("GET /api/plants", () => {
 
     })
 
+
+
+describe("POST /api/users/:user_id/owned_plants", () => {
+  test("should add a plant to users owned plants and return correct details", () => {
+    const addPlant = { user: 2, plant: 1001, zone: 1 };
+    return request(app)
+      .post("/api/users/2/owned_plants")
+      .send(addPlant)
+      .expect(201)
+      .then((response) => {
+        expect(response.body.newPlant).toMatchObject({
+          owned_plant_key: 4,
+          user_key: 2,
+          plant_key: 1001,
+        });
+      });
+  });
+});
 
