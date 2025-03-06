@@ -354,16 +354,7 @@
       "plant_key": 1001
     }
 
-  }
-  }, 
-  "POST /api/users/:user_id/fave_plants": {
-    "description": "posts a plant to a given users favourites",
-    "queries": ["user_id", "plant_id"],
-    "exampleResponse": { 
-      "favourite_plant_key": 4, 
-      "user_key": 2, 
-      "plant_key": 1001 }
-  }, 
+  },
   "GET /api/plants": {
     "description": "retrieves an array of all plant objects from api and takes filtering queries",
     "queries": ["common_name", "tropical", "sunlight", "maintenance", "poisonous_to_humans", "poisonous_to_pets", "edible_fruit", "edible_leaf", "flowers"],
