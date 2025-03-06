@@ -322,7 +322,7 @@ describe("POST /api/users/:user_id/fave_plants", () => {
 
 
 //get all plants
-//filter plants function o
+//filter plants function 
 
 
 
@@ -344,3 +344,6 @@ describe ("GET /api/plants", () => {
           });
         })
     })
+
+
+    
