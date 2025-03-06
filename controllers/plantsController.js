@@ -1,10 +1,16 @@
+
+const {fetchPlantById, fetchFavePlants, addFavePlant, fetchPlants} = require("../models/plantsModel")
+
+
 const {
   fetchPlantById,
   fetchFavePlants,
   addFavePlant,
   fetchOwnedPlants,
   addOwnedPlant,
+  fetchPlants
 } = require("../models/plantsModel");
+
 
 const getPlantByID = (req, res, next) => {
   const { plant_id } = req.params;
@@ -66,10 +72,30 @@ const postOwnedPlant = (req, res, next) => {
     });
 };
 
+
+const getPlants = (req, res, next) => {
+
+    const {common_name, tropical, sunlight, maintenance, poisonous_to_humans, poisonous_to_pets, edible_fruit, edible_leaf, flowers} = req.query
+
+    const query = req.query
+    fetchPlants(query)
+
+    .then((plants) => {
+        res.status(200).send({plants})
+    })
+    .catch((err) => {
+        next(err)
+    })
+}
+
+
+
 module.exports = {
   getPlantByID,
   getFavePlants,
   postFavePlants,
   getOwnedPlants,
   postOwnedPlant,
+  getPlants
 };
+

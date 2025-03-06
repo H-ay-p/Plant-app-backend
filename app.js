@@ -2,6 +2,7 @@ const cors = require("cors");
 const express = require("express");
 const app = express();
 
+
 const endpoints = require("./endpoints.json");
 const {
   getPlantByID,
@@ -9,11 +10,13 @@ const {
   postFavePlants,
   getOwnedPlants,
   postOwnedPlant,
+  getPlants
 } = require("./controllers/plantsController");
 const { getUserByID, postNewUser } = require("./controllers/usersController");
 const { getZonesByUserId, postZone } = require("./controllers/zonesController");
 
 app.use(cors());
+
 app.use(express.json());
 
 app.get("/api", (req, res) => {
@@ -32,10 +35,16 @@ app.post("/api/zones", postZone);
 
 app.get("/api/users/:user_id/fave_plants", getFavePlants);
 
+
+app.get("/api/plants", getPlants)
+
+
+
 app.post("/api/users/:user_id/fave_plants", postFavePlants);
 
 app.get("/api/users/:user_id/owned_plants", getOwnedPlants);
 app.post("/api/users/:user_id/owned_plants", postOwnedPlant);
+
 
 app.all("*", (req, res) => {
   res.status(404).send({ error: "Endpoint not found" });
