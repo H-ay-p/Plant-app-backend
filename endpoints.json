@@ -340,5 +340,18 @@
       "zone_key": 1,
       "zone_name": "balcony"
     }
+  },
+  "POST /api/users/:user_id/owned_plants": {
+    "description": "posts a plant to a given users owned list",
+    "exampleInput": {
+      "user": "user_id",
+      "plant": "plant_id",
+      "zone": "zone_id"
+    },
+    "exampleResponse": {
+      "owned_plant_key": 4,
+      "user_key": 2,
+      "plant_key": 1001
+    }
   }
 }
