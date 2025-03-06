@@ -312,7 +312,7 @@ describe("POST /api/users/:user_id/fave_plants", () => {
 //search plant by:
 // name = "common_name" : "string"
 //tropical/not tropical = "tropical": boolean
-//light level =  "sunlight": [array of "strings" ]
+//light level =  "sunlight": one of three "strings"
 //maintenance = "maintenance": "string"
 //toxicity (pets and humans) =  "poisonous_to_humans": boolean, "poisonous_to_pets": boolean
 //edible = "edible_leaf": boolean, "edible_fruit": boolean
@@ -343,7 +343,18 @@ describe ("GET /api/plants", () => {
             });
           });
         })
+        test.only("should return plant by common_name", () => {
+            return request(app)
+            .get("/api/plants?common_name=anthurium")
+            .expect(200)
+            .then((res) => {
+                const plants = res.body.plants
+                expect(plants[0].common_name).toEqual("anthurium")
+        })
+    })
     })
 
+    // {common_name, tropical, sunlight, maintenance,poisonous_to_humans, poisonous_to_pets, edible_fruit, edible_leaf, flowers}
 
-    
+
+    // "common_name", "tropical", "sunlight", "maintenance","poisonous_to_humans", "poisonous_to_pets", "edible_fruit", "edible_leaf", "flowers"

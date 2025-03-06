@@ -46,10 +46,23 @@ const addFavePlant= (user, plant) => {
     })
  }
 
- const fetchPlants = () => {
+ const fetchPlants = (common_name, tropical, sunlight, maintenance,poisonous_to_humans, poisonous_to_pets, edible_fruit, edible_leaf, flowers, sort_by, order) => {
+    // const greenList = ["asc", "desc"]
+
+    // if(!greenList.includes(sort_by, order)){
+    //     return Promise.reject({
+    //         status: 400,
+    //         msg: "Bad query",
+    //     });
+    // }
+    let queryString = `SELECT * FROM plants`
+
+    if(common_name){
+        queryString += ` WHERE common_name = $1`
+    }
     return db
     .query(
-        `SELECT * FROM plants`
+        queryString, [common_name]
     )
     .then(({ rows }) => {
         return rows

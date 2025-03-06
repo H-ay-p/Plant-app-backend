@@ -39,8 +39,11 @@ const postFavePlants  = (req,res,next) => {
 
 const getPlants = (req, res, next) => {
 
-    fetchPlants()
+    const {common_name, tropical, sunlight, maintenance,poisonous_to_humans, poisonous_to_pets, edible_fruit, edible_leaf, flowers, sort_by, order} = req.query
+
+    fetchPlants(common_name, tropical, sunlight, maintenance,poisonous_to_humans, poisonous_to_pets, edible_fruit, edible_leaf, flowers, sort_by, order)
     .then((plants) => {
+        // console.log(plants)
         res.status(200).send({plants})
     })
     .catch((err) => {
