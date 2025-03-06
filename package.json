@@ -18,11 +18,12 @@
   "description": "package json for plant app",
   "main": "listen.js",
   "scripts": {
+    "start": "node listen.js",
     "test": "jest",
     "setup-db": "psql -f ./db/setup.sql",
     "seed": "node ./db/run-seed",
     "seed-test": "NODE_ENV=test npm run seed",
-    "seed-prod": "NODE_ENV=development npm run seed"
+    "seed-prod": "NODE_ENV=production npm run seed"
   },
   "repository": {
     "type": "git",
