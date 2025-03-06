@@ -1,7 +1,4 @@
 
-const {fetchPlantById, fetchFavePlants, addFavePlant, fetchPlants} = require("../models/plantsModel")
-
-
 const {
   fetchPlantById,
   fetchFavePlants,
