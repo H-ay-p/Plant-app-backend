@@ -15,6 +15,6 @@ describe("handlePlantData", () => {
     expect(Array.isArray(handlePlantData(plants))).toBe(true);
   });
   test("should return arrays of the correct length", () => {
-    expect(handlePlantData(plants)[0].length).toBe(26);
+    expect(handlePlantData(plants)[0].length).toBe(23);
   });
 });

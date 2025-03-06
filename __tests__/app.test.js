@@ -359,3 +359,20 @@ describe("GET /api/users/:user_id/owned_plants", () => {
       });
   });
 });
+
+describe("POST /api/users/:user_id/owned_plants", () => {
+  test("should add a plant to users owned plants and return correct details", () => {
+    const addPlant = { user: 2, plant: 1001, zone: 1 };
+    return request(app)
+      .post("/api/users/2/owned_plants")
+      .send(addPlant)
+      .expect(201)
+      .then((response) => {
+        expect(response.body.newPlant).toMatchObject({
+          owned_plant_key: 4,
+          user_key: 2,
+          plant_key: 1001,
+        });
+      });
+  });
+});
