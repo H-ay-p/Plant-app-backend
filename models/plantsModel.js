@@ -65,9 +65,21 @@ const fetchOwnedPlants = (user_id) => {
     });
 };
 
+const addOwnedPlant = (user, plant, zone) => {
+  return db
+    .query(
+      `INSERT INTO owned_plants (user_key, plant_key, zone_key) VALUES ($1, $2,$3) RETURNING *`,
+      [user, plant, zone]
+    )
+    .then(({ rows }) => {
+      return rows[0];
+    });
+};
+
 module.exports = {
   fetchPlantById,
   fetchFavePlants,
   addFavePlant,
   fetchOwnedPlants,
+  addOwnedPlant,
 };

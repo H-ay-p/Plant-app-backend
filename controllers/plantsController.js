@@ -3,6 +3,7 @@ const {
   fetchFavePlants,
   addFavePlant,
   fetchOwnedPlants,
+  addOwnedPlant,
 } = require("../models/plantsModel");
 
 const getPlantByID = (req, res, next) => {
@@ -53,9 +54,22 @@ const getOwnedPlants = (req, res, next) => {
     });
 };
 
+const postOwnedPlant = (req, res, next) => {
+  const { user, plant, zone } = req.body;
+
+  addOwnedPlant(user, plant, zone)
+    .then((newPlant) => {
+      res.status(201).send({ newPlant });
+    })
+    .catch((err) => {
+      next(err);
+    });
+};
+
 module.exports = {
   getPlantByID,
   getFavePlants,
   postFavePlants,
   getOwnedPlants,
+  postOwnedPlant,
 };
