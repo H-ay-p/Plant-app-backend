@@ -307,8 +307,8 @@
       "plant_key": 1001 }
   }, 
   "GET /api/plants": {
-    "description": "retrieves an array of all plant objects from api",
-    "queries": [],
+    "description": "retrieves an array of all plant objects from api and takes filtering queries",
+    "queries": ["common_name", "tropical", "sunlight", "maintenance", "poisonous_to_humans", "poisonous_to_pets", "edible_fruit", "edible_leaf", "flowers"],
     "exampleResponse":
     [{
      " plant_id": 1821,

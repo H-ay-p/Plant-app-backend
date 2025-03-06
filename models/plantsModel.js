@@ -46,25 +46,113 @@ const addFavePlant= (user, plant) => {
     })
  }
 
- const fetchPlants = (common_name, tropical, sunlight, maintenance,poisonous_to_humans, poisonous_to_pets, edible_fruit, edible_leaf, flowers, sort_by, order) => {
-    // const greenList = ["asc", "desc"]
+ const fetchPlants = (query) => {
 
-    // if(!greenList.includes(sort_by, order)){
-    //     return Promise.reject({
-    //         status: 400,
-    //         msg: "Bad query",
-    //     });
-    // }
+
     let queryString = `SELECT * FROM plants`
+    const addQuery = []
+    if(query){
+        let dollar_counter = 0
 
-    if(common_name){
-        queryString += ` WHERE common_name = $1`
+        if(query.common_name){
+            addQuery.push(query.common_name)
+            queryString += ' WHERE common_name = $1'
+            dollar_counter ++
+        }
+
+        if(query.tropical){
+            addQuery.push(query.tropical)
+            if(dollar_counter === 0){
+                queryString += ' WHERE tropical = $1'
+            }else{
+                queryString += ` AND tropical = $${dollar_counter + 1}`
+            }
+            dollar_counter ++
+        } 
+
+        if(query.sunlight){
+            addQuery.push(query.sunlight)
+            if(dollar_counter === 0){
+                queryString += ' WHERE sunlight = $1'
+            }else{
+                queryString += ` AND sunlight = $${dollar_counter + 1}`
+            }
+            dollar_counter ++
+        } 
+
+        if(query.maintenance){
+            addQuery.push(query.maintenance)
+            if(dollar_counter === 0){
+                queryString += ' WHERE maintenance = $1'
+            }else{
+                queryString += ` AND maintenance = $${dollar_counter + 1}`
+            }
+            dollar_counter ++
+        } 
+
+        if(query.poisonous_to_humans){
+            addQuery.push(query.poisonous_to_humans)
+            if(dollar_counter === 0){
+                queryString += ' WHERE  poisonous_to_humans = $1'
+            }else{
+                queryString += ` AND poisonous_to_humans = $${dollar_counter + 1}`
+            }
+            dollar_counter ++
+        } 
+
+        if(query.poisonous_to_pets){
+            addQuery.push(query.poisonous_to_pets)
+            if(dollar_counter === 0){
+                queryString += ' WHERE  poisonous_to_pets = $1'
+            }else{
+                queryString += ` AND poisonous_to_pets = $${dollar_counter + 1}`
+            }
+            dollar_counter ++
+        } 
+
+        if(query.edible_fruit){
+            addQuery.push(query.edible_fruit)
+            if(dollar_counter === 0){
+                queryString += ' WHERE  edible_fruit = $1'
+            }else{
+                queryString += ` AND edible_fruit = $${dollar_counter + 1}`
+            }
+            dollar_counter ++
+        } 
+
+        if(query.edible_leaf){
+            addQuery.push(query.edible_leaf)
+            if(dollar_counter === 0){
+                queryString += ' WHERE  edible_leaf = $1'
+            }else{
+                queryString += ` AND edible_leaf = $${dollar_counter + 1}`
+            }
+            dollar_counter ++
+        } 
+
+
+        if(query.flowers){
+            addQuery.push(query.flowers)
+            if(dollar_counter === 0){
+                queryString += ' WHERE  flowers = $1'
+            }else{
+                queryString += ` AND flowers = $${dollar_counter + 1}`
+            }
+            dollar_counter ++
+        } 
+
     }
     return db
     .query(
-        queryString, [common_name]
+        queryString, addQuery
     )
     .then(({ rows }) => {
+        if (rows.length === 0) {
+            return Promise.reject({
+                status: 404,
+                msg: "No plants found matching the given criteria",
+            })
+        }
         return rows
     });
 }
