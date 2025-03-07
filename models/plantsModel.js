@@ -111,7 +111,7 @@ const fetchPlants = (query) => {
     if (query.poisonous_to_humans) {
       addQuery.push(query.poisonous_to_humans);
       if (dollar_counter === 0) {
-        queryString += " WHERE  poisonous_to_humans = $1";
+        queryString += " WHERE poisonous_to_humans = $1";
       } else {
         queryString += ` AND poisonous_to_humans = $${dollar_counter + 1}`;
       }
@@ -121,7 +121,7 @@ const fetchPlants = (query) => {
     if (query.poisonous_to_pets) {
       addQuery.push(query.poisonous_to_pets);
       if (dollar_counter === 0) {
-        queryString += " WHERE  poisonous_to_pets = $1";
+        queryString += " WHERE poisonous_to_pets = $1";
       } else {
         queryString += ` AND poisonous_to_pets = $${dollar_counter + 1}`;
       }
@@ -131,7 +131,7 @@ const fetchPlants = (query) => {
     if (query.edible_fruit) {
       addQuery.push(query.edible_fruit);
       if (dollar_counter === 0) {
-        queryString += " WHERE  edible_fruit = $1";
+        queryString += " WHERE edible_fruit = $1";
       } else {
         queryString += ` AND edible_fruit = $${dollar_counter + 1}`;
       }
@@ -141,16 +141,16 @@ const fetchPlants = (query) => {
     if (query.edible_leaf) {
       addQuery.push(query.edible_leaf);
       if (dollar_counter === 0) {
-        queryString += " WHERE  edible_leaf = $1";
+        queryString += " WHERE edible_leaf = $1";
       } else {
         queryString += ` AND edible_leaf = $${dollar_counter + 1}`;
       }
       dollar_counter++;
     }
     if (query.edible) {
-      addQuery.push(query.edible_leaf);
+      addQuery.push(query.edible);
       if (dollar_counter === 0) {
-        queryString += " WHERE  edible = $1";
+        queryString += " WHERE edible = $1";
       } else {
         queryString += ` AND edible = $${dollar_counter + 1}`;
       }
@@ -160,7 +160,7 @@ const fetchPlants = (query) => {
     if (query.flowers) {
       addQuery.push(query.flowers);
       if (dollar_counter === 0) {
-        queryString += " WHERE  flowers = $1";
+        queryString += " WHERE flowers = $1";
       } else {
         queryString += ` AND flowers = $${dollar_counter + 1}`;
       }
