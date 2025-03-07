@@ -360,183 +360,198 @@ describe("GET /api/users/:user_id/owned_plants", () => {
   });
 });
 
-
-
-describe ("GET /api/plants", () => {
-    test.only("should return all plants", () => {
-        return request(app)
-        .get("/api/plants")
-        .expect(200)
-        .then(({ body }) => {
-            const plants = body.plants;
-            expect(Array.isArray(plants)).toBe(true);
-            expect(plants.length).toBeGreaterThan(0);
-            plants.forEach((plant) => {
-              expect(plant).toHaveProperty("plant_id");
-              expect(plant).toHaveProperty("common_name");
-            });
-          });
-        })
-        test("should return plant by common_name", () => {
-            return request(app)
-            .get("/api/plants?common_name=anthurium")
-            .expect(200)
-            .then((res) => {
-                const plants = res.body.plants
-                expect(plants[0].common_name).toEqual("anthurium")
-        })
-    })
-    test("should return plant by tropical", () => {
-        return request(app)
-        .get("/api/plants?tropical=true")
-        .expect(200)
-        .then((res) => {
-            const plants = res.body.plants
-            expect(plants[0].tropical).toEqual(true)
-    })
-})
-    test("should return plant by tropical and common_name", () => {
-        return request(app)
-        .get("/api/plants?tropical=false&common_name=anthurium")
-        .expect(200)
-        .then((res) => {
-            const plants = res.body.plants
-            console.log(plants)
-            expect(plants[0].tropical).toEqual(false)
-            expect(plants[0].common_name).toEqual("anthurium")
-    })
-    })
-    test("should return plant by tropical, common_name and sunlight", () => {
-        return request(app)
-        .get("/api/plants?tropical=false&common_name=anthurium&sunlight=full sun")
-        .expect(200)
-        .then((res) => {
-            const plants = res.body.plants
-            console.log(plants[0].sunlight)
-            expect(plants[0].tropical).toEqual(false)
-            expect(plants[0].common_name).toEqual("anthurium")
-            expect(plants[0].sunlight).toEqual("full sun")
-    })
-    })
-    test("should return plant by tropical, common_name, sunlight and maintenance", () => {
-        return request(app)
-        .get("/api/plants?tropical=false&common_name=anthurium&sunlight=full sun&maintenance=Moderate")
-        .expect(200)
-        .then((res) => {
-            const plants = res.body.plants
-            console.log(plants[0].maintenance)
-            expect(plants[0].tropical).toEqual(false)
-            expect(plants[0].common_name).toEqual("anthurium")
-            expect(plants[0].sunlight).toEqual("full sun")
-            expect(plants[0].maintenance).toEqual("Moderate")
-    })
-    })
-    test("should return plant by tropical, common_name, sunlight, maintenance and poisonous_to_humans", () => {
-        return request(app)
-        .get("/api/plants?tropical=false&common_name=anthurium&sunlight=full sun&maintenance=Moderate&poisonous_to_humans=false")
-        .expect(200)
-        .then((res) => {
-            const plants = res.body.plants
-            expect(plants[0].tropical).toEqual(false)
-            expect(plants[0].common_name).toEqual("anthurium")
-            expect(plants[0].sunlight).toEqual("full sun")
-            expect(plants[0].maintenance).toEqual("Moderate")
-            expect(plants[0]. poisonous_to_humans).toEqual(false)
-    })
-    })
-    test("should return plant by tropical, common_name, sunlight, maintenance, poisonous_to_humans and poisonous_to_pets", () => {
-        return request(app)
-        .get("/api/plants?tropical=false&common_name=anthurium&sunlight=full sun&maintenance=Moderate&poisonous_to_humans=false&poisonous_to_pets=false")
-        .expect(200)
-        .then((res) => {
-            const plants = res.body.plants
-            expect(plants[0].tropical).toEqual(false)
-            expect(plants[0].common_name).toEqual("anthurium")
-            expect(plants[0].sunlight).toEqual("full sun")
-            expect(plants[0].maintenance).toEqual("Moderate")
-            expect(plants[0]. poisonous_to_humans).toEqual(false)
-            expect(plants[0]. poisonous_to_pets).toEqual(false)
-    })
-    })
-    test("should return plant by tropical, common_name, sunlight, maintenance, poisonous_to_humans, poisonous_to_pets and edible_fruit ", () => {
-        return request(app)
-        .get("/api/plants?tropical=false&common_name=anthurium&sunlight=full sun&maintenance=Moderate&poisonous_to_humans=false&poisonous_to_pets=false&edible_fruit=false&edible_leaf=false")
-        .expect(200)
-        .then((res) => {
-            const plants = res.body.plants
-            expect(plants[0].tropical).toEqual(false)
-            expect(plants[0].common_name).toEqual("anthurium")
-            expect(plants[0].sunlight).toEqual("full sun")
-            expect(plants[0].maintenance).toEqual("Moderate")
-            expect(plants[0].poisonous_to_humans).toEqual(false)
-            expect(plants[0].poisonous_to_pets).toEqual(false)
-            expect(plants[0].edible_fruit).toEqual(false)
-    })
-    })
-    test("should return plant by tropical, common_name, sunlight, maintenance, poisonous_to_humans, poisonous_to_pets, edible_fruit and edible_leaf", () => {
-        return request(app)
-        .get("/api/plants?tropical=false&common_name=anthurium&sunlight=full sun&maintenance=Moderate&poisonous_to_humans=false&poisonous_to_pets=false&edible_fruit=false&edible_leaf=false")
-        .expect(200)
-        .then((res) => {
-            const plants = res.body.plants
-            expect(plants[0].tropical).toEqual(false)
-            expect(plants[0].common_name).toEqual("anthurium")
-            expect(plants[0].sunlight).toEqual("full sun")
-            expect(plants[0].maintenance).toEqual("Moderate")
-            expect(plants[0].poisonous_to_humans).toEqual(false)
-            expect(plants[0].poisonous_to_pets).toEqual(false)
-            expect(plants[0].edible_fruit).toEqual(false)
-            expect(plants[0].edible_leaf).toEqual(false)
-    })
-    })
-    test("should return plant by tropical, common_name, sunlight, maintenance, poisonous_to_humans, poisonous_to_pets, edible_fruit, edible_leaf and flowers", () => {
-        return request(app)
-        .get("/api/plants?tropical=false&common_name=anthurium&sunlight=full sun&maintenance=Moderate&poisonous_to_humans=false&poisonous_to_pets=false&edible_fruit=false&edible_leaf=false&flowers=true")
-        .expect(200)
-        .then((res) => {
-            const plants = res.body.plants
-            expect(plants[0].tropical).toEqual(false)
-            expect(plants[0].common_name).toEqual("anthurium")
-            expect(plants[0].sunlight).toEqual("full sun")
-            expect(plants[0].maintenance).toEqual("Moderate")
-            expect(plants[0].poisonous_to_humans).toEqual(false)
-            expect(plants[0].poisonous_to_pets).toEqual(false)
-            expect(plants[0].edible_fruit).toEqual(false)
-            expect(plants[0].edible_leaf).toEqual(false)
-            expect(plants[0].flowers).toEqual(true)
-    })
-    })
-    test("should return plant by sunlight, poisonous_to_humans and poisonous_to_pets", () => {
-        return request(app)
-        .get("/api/plants?sunlight=part shade&poisonous_to_humans=false&poisonous_to_pets=false")
-        .expect(200)
-        .then((res) => {
-            const plants = res.body.plants
-            expect(plants[0].sunlight).toEqual("part shade")
-            expect(plants[0].poisonous_to_humans).toEqual(false)
-            expect(plants[0].poisonous_to_pets).toEqual(false)
-    })
-    })
-        test("404: error if no plant exists with those queries", () => {
-            return request(app)
-            .get("/api/plants?tropical=false&common_name=anthurium&sunlight=full sun&maintenance=Moderate&poisonous_to_humans=false&poisonous_to_pets=false&edible_fruit=false&edible_leaf=false&flowers=false")
-            .expect(404)
-            .then((response) => {
-                expect(response.body.error).toBe("No plants found matching the given criteria");
-            });
+describe("GET /api/plants", () => {
+  test.only("should return all plants", () => {
+    return request(app)
+      .get("/api/plants")
+      .expect(200)
+      .then(({ body }) => {
+        const plants = body.plants;
+        expect(Array.isArray(plants)).toBe(true);
+        expect(plants.length).toBeGreaterThan(0);
+        plants.forEach((plant) => {
+          expect(plant).toHaveProperty("plant_id");
+          expect(plant).toHaveProperty("common_name");
         });
-        test("404: error if no plant exists with those queries", () => {
-            return request(app)
-                .get("/api/plants?common_name=NonExistentPlant")
-                .expect(404)
-                .then((res) => {
-                    expect(res.body.error).toEqual("No plants found matching the given criteria");
-                });
-        });
-
-    })
-
-
+      });
+  });
+  test("should return plant by common_name", () => {
+    return request(app)
+      .get("/api/plants?common_name=anthurium")
+      .expect(200)
+      .then((res) => {
+        const plants = res.body.plants;
+        expect(plants[0].common_name).toEqual("anthurium");
+      });
+  });
+  test("should return plant by tropical", () => {
+    return request(app)
+      .get("/api/plants?tropical=true")
+      .expect(200)
+      .then((res) => {
+        const plants = res.body.plants;
+        expect(plants[0].tropical).toEqual(true);
+      });
+  });
+  test("should return plant by tropical and common_name", () => {
+    return request(app)
+      .get("/api/plants?tropical=false&common_name=anthurium")
+      .expect(200)
+      .then((res) => {
+        const plants = res.body.plants;
+        console.log(plants);
+        expect(plants[0].tropical).toEqual(false);
+        expect(plants[0].common_name).toEqual("anthurium");
+      });
+  });
+  test("should return plant by tropical, common_name and sunlight", () => {
+    return request(app)
+      .get("/api/plants?tropical=false&common_name=anthurium&sunlight=full sun")
+      .expect(200)
+      .then((res) => {
+        const plants = res.body.plants;
+        console.log(plants[0].sunlight);
+        expect(plants[0].tropical).toEqual(false);
+        expect(plants[0].common_name).toEqual("anthurium");
+        expect(plants[0].sunlight).toEqual("full sun");
+      });
+  });
+  test("should return plant by tropical, common_name, sunlight and maintenance", () => {
+    return request(app)
+      .get(
+        "/api/plants?tropical=false&common_name=anthurium&sunlight=full sun&maintenance=Moderate"
+      )
+      .expect(200)
+      .then((res) => {
+        const plants = res.body.plants;
+        console.log(plants[0].maintenance);
+        expect(plants[0].tropical).toEqual(false);
+        expect(plants[0].common_name).toEqual("anthurium");
+        expect(plants[0].sunlight).toEqual("full sun");
+        expect(plants[0].maintenance).toEqual("Moderate");
+      });
+  });
+  test("should return plant by tropical, common_name, sunlight, maintenance and poisonous_to_humans", () => {
+    return request(app)
+      .get(
+        "/api/plants?tropical=false&common_name=anthurium&sunlight=full sun&maintenance=Moderate&poisonous_to_humans=false"
+      )
+      .expect(200)
+      .then((res) => {
+        const plants = res.body.plants;
+        expect(plants[0].tropical).toEqual(false);
+        expect(plants[0].common_name).toEqual("anthurium");
+        expect(plants[0].sunlight).toEqual("full sun");
+        expect(plants[0].maintenance).toEqual("Moderate");
+        expect(plants[0].poisonous_to_humans).toEqual(false);
+      });
+  });
+  test("should return plant by tropical, common_name, sunlight, maintenance, poisonous_to_humans and poisonous_to_pets", () => {
+    return request(app)
+      .get(
+        "/api/plants?tropical=false&common_name=anthurium&sunlight=full sun&maintenance=Moderate&poisonous_to_humans=false&poisonous_to_pets=false"
+      )
+      .expect(200)
+      .then((res) => {
+        const plants = res.body.plants;
+        expect(plants[0].tropical).toEqual(false);
+        expect(plants[0].common_name).toEqual("anthurium");
+        expect(plants[0].sunlight).toEqual("full sun");
+        expect(plants[0].maintenance).toEqual("Moderate");
+        expect(plants[0].poisonous_to_humans).toEqual(false);
+        expect(plants[0].poisonous_to_pets).toEqual(false);
+      });
+  });
+  test("should return plant by tropical, common_name, sunlight, maintenance, poisonous_to_humans, poisonous_to_pets and edible_fruit ", () => {
+    return request(app)
+      .get(
+        "/api/plants?tropical=false&common_name=anthurium&sunlight=full sun&maintenance=Moderate&poisonous_to_humans=false&poisonous_to_pets=false&edible_fruit=false&edible_leaf=false"
+      )
+      .expect(200)
+      .then((res) => {
+        const plants = res.body.plants;
+        expect(plants[0].tropical).toEqual(false);
+        expect(plants[0].common_name).toEqual("anthurium");
+        expect(plants[0].sunlight).toEqual("full sun");
+        expect(plants[0].maintenance).toEqual("Moderate");
+        expect(plants[0].poisonous_to_humans).toEqual(false);
+        expect(plants[0].poisonous_to_pets).toEqual(false);
+        expect(plants[0].edible_fruit).toEqual(false);
+      });
+  });
+  test("should return plant by tropical, common_name, sunlight, maintenance, poisonous_to_humans, poisonous_to_pets, edible_fruit and edible_leaf", () => {
+    return request(app)
+      .get(
+        "/api/plants?tropical=false&common_name=anthurium&sunlight=full sun&maintenance=Moderate&poisonous_to_humans=false&poisonous_to_pets=false&edible_fruit=false&edible_leaf=false"
+      )
+      .expect(200)
+      .then((res) => {
+        const plants = res.body.plants;
+        expect(plants[0].tropical).toEqual(false);
+        expect(plants[0].common_name).toEqual("anthurium");
+        expect(plants[0].sunlight).toEqual("full sun");
+        expect(plants[0].maintenance).toEqual("Moderate");
+        expect(plants[0].poisonous_to_humans).toEqual(false);
+        expect(plants[0].poisonous_to_pets).toEqual(false);
+        expect(plants[0].edible_fruit).toEqual(false);
+        expect(plants[0].edible_leaf).toEqual(false);
+      });
+  });
+  test("should return plant by tropical, common_name, sunlight, maintenance, poisonous_to_humans, poisonous_to_pets, edible_fruit, edible_leaf and flowers", () => {
+    return request(app)
+      .get(
+        "/api/plants?tropical=false&common_name=anthurium&sunlight=full sun&maintenance=Moderate&poisonous_to_humans=false&poisonous_to_pets=false&edible_fruit=false&edible_leaf=false&flowers=true"
+      )
+      .expect(200)
+      .then((res) => {
+        const plants = res.body.plants;
+        expect(plants[0].tropical).toEqual(false);
+        expect(plants[0].common_name).toEqual("anthurium");
+        expect(plants[0].sunlight).toEqual("full sun");
+        expect(plants[0].maintenance).toEqual("Moderate");
+        expect(plants[0].poisonous_to_humans).toEqual(false);
+        expect(plants[0].poisonous_to_pets).toEqual(false);
+        expect(plants[0].edible_fruit).toEqual(false);
+        expect(plants[0].edible_leaf).toEqual(false);
+        expect(plants[0].flowers).toEqual(true);
+      });
+  });
+  test("should return plant by sunlight, poisonous_to_humans and poisonous_to_pets", () => {
+    return request(app)
+      .get(
+        "/api/plants?sunlight=part shade&poisonous_to_humans=false&poisonous_to_pets=false"
+      )
+      .expect(200)
+      .then((res) => {
+        const plants = res.body.plants;
+        expect(plants[0].sunlight).toEqual("part shade");
+        expect(plants[0].poisonous_to_humans).toEqual(false);
+        expect(plants[0].poisonous_to_pets).toEqual(false);
+      });
+  });
+  test("404: error if no plant exists with those queries", () => {
+    return request(app)
+      .get(
+        "/api/plants?tropical=false&common_name=anthurium&sunlight=full sun&maintenance=Moderate&poisonous_to_humans=false&poisonous_to_pets=false&edible_fruit=false&edible_leaf=false&flowers=false"
+      )
+      .expect(404)
+      .then((response) => {
+        expect(response.body.error).toBe(
+          "No plants found matching the given criteria"
+        );
+      });
+  });
+  test("404: error if no plant exists with those queries", () => {
+    return request(app)
+      .get("/api/plants?common_name=NonExistentPlant")
+      .expect(404)
+      .then((res) => {
+        expect(res.body.error).toEqual(
+          "No plants found matching the given criteria"
+        );
+      });
+  });
+});
 
 describe("POST /api/users/:user_id/owned_plants", () => {
   test("should add a plant to users owned plants and return correct details", () => {
@@ -555,3 +570,22 @@ describe("POST /api/users/:user_id/owned_plants", () => {
   });
 });
 
+describe("PATCH /api/users/:user_id/water", () => {
+  test("should update the watered date on owned plants", () => {
+    const updateObj = { plant_id: 1025, date: "2025-03-07" };
+    return request(app)
+      .patch("/api/users/2/water")
+      .send(updateObj)
+      .expect(200)
+      .then((response) => {
+        console.log(response.body);
+        expect(response.body[0]).toMatchObject({
+          owned_plant_key: 2,
+          user_key: 2,
+          plant_key: 1025,
+          zone_key: 2,
+          last_watered: "2025-03-07",
+        });
+      });
+  });
+});

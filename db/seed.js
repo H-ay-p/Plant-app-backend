@@ -2,8 +2,6 @@ const format = require("pg-format");
 const db = require("./connection.js");
 const { convertValuesToArray, handlePlantData } = require("./utils.js");
 
-// NOTES - should cuisine be in there? check foreign and primary keys setup
-
 function seed(users, plants, zones, ownedPlants, favePlants) {
   return db
     .query("DROP TABLE IF EXISTS owned_plants CASCADE")
