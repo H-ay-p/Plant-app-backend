@@ -80,7 +80,7 @@
     "POST /api/zones": {
       "description": "adds a zone",
       "exampleInput": {
-        "user_key": 5,
+        "user": 5,
         "is_outdoor": true,
         "sun_level": "full shade",
         "zone_name": "garden"
