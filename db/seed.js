@@ -43,7 +43,7 @@ function seed(users, plants, zones, ownedPlants, favePlants) {
     .then(() => {
       return db.query(
         format(
-          `INSERT INTO plants (plant_id, common_name, sci_name, type, cycle, watering,sunlight ,maintenance, growth_rate, drought_tolerant, thorny, invasive, tropical, pest_resistant, flowers, flowering_season, edible_fruit, harvest_season, edible_leaf, poisonous_to_humans, poisonous_to_pets, description, default_image) VALUES %L`,
+          `INSERT INTO plants (plant_id, common_name, sci_name, type, cycle, watering,sunlight ,maintenance, growth_rate, drought_tolerant, thorny, invasive, tropical, pest_resistant, flowers, flowering_season, edible_fruit, harvest_season, edible_leaf, edible, poisonous_to_humans, poisonous_to_pets, description, default_image) VALUES %L`,
           handlePlantData(plants)
         )
       );
@@ -107,10 +107,12 @@ function createPlants() {
     edible_fruit BOOLEAN,
     harvest_season VARCHAR,
     edible_leaf BOOLEAN,
+    edible BOOLEAN,
     poisonous_to_humans BOOLEAN,
     poisonous_to_pets BOOLEAN,
     description VARCHAR,
-    default_image VARCHAR
+    default_image VARCHAR,
+    price VARCHAR
     )`
   );
 }
