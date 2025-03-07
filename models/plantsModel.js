@@ -147,6 +147,15 @@ const fetchPlants = (query) => {
       }
       dollar_counter++;
     }
+    if (query.edible) {
+      addQuery.push(query.edible_leaf);
+      if (dollar_counter === 0) {
+        queryString += " WHERE  edible_leaf = $1";
+      } else {
+        queryString += ` AND edible_leaf = $${dollar_counter + 1}`;
+      }
+      dollar_counter++;
+    }
 
     if (query.flowers) {
       addQuery.push(query.flowers);

@@ -54,6 +54,11 @@ function handlePlantData(plants) {
     newPlant.edible_fruit = plant.edible_fruit;
     newPlant.harvest_season = plant.harvest_season;
     newPlant.edible_leaf = plant.edible_leaf;
+    if (newPlant.edible_leaf || newPlant.edible_fruit) {
+      newPlant.edible = true;
+    } else {
+      newPlant.edible = false;
+    }
     newPlant.poisonous_to_humans = plant.poisonous_to_humans;
     newPlant.poisonous_to_pets = plant.poisonous_to_pets;
     newPlant.description = plant.description;

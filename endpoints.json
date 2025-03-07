@@ -4,124 +4,39 @@
   },
   "GET /api/plants/:plant_id": {
     "description": "retrieves plant information by their id number",
-    "queries": ["plant_id"],
+    "parameter": "plant_id",
     "exampleResponse": {
-      "855": {
-        "id": 855,
+      "plant": {
+        "plant_id": 855,
         "common_name": "anthurium",
-        "scientific_name": ["Anthurium andraeanum"],
-        "other_name": [],
-        "family": "Araceae",
-        "hybrid": null,
-        "authority": null,
-        "subspecies": null,
-        "cultivar": null,
-        "variety": null,
-        "species_epithet": "andraeanum",
-        "genus": "Anthurium",
-        "origin": [
-          "Colombia",
-          "Ecuador",
-          "Venezuelan Antilles",
-          "Windward Islands"
-        ],
+        "sci_name": "Anthurium andraeanum",
         "type": "Flower",
-        "dimensions": [
-          { "type": null, "min_value": 1, "max_value": 1.5, "unit": "feet" }
-        ],
         "cycle": "Herbaceous Perennial",
-        "attracts": [],
-        "propagation": [
-          "Division",
-          "Air Layering Propagation",
-          "Stem Propagation",
-          "Leaf Cutting",
-          "Seed Propagation"
-        ],
-        "hardiness": { "min": "11", "max": "12" },
-        "hardiness_location": {
-          "full_url": "https://perenual.com/api/hardiness-map?species_id=855&size=og&key=sk-MFnY67bf34955572c8859",
-          "full_iframe": "<iframe frameborder=0 scrolling=yes seamless=seamless width=1000 height=550 style='margin:auto;' src='https://perenual.com/api/hardiness-map?species_id=855&size=og&key=sk-MFnY67bf34955572c8859'></iframe>"
-        },
         "watering": "Average",
-        "watering_general_benchmark": { "value": null, "unit": "days" },
-        "plant_anatomy": [
-          { "part": "stalk", "color": ["green"] },
-          { "part": "leaves", "color": ["green"] },
-          { "part": "flowers", "color": ["red", "red-pink"] },
-          {
-            "part": "spadix",
-            "color": [
-              "yellow-white-orange",
-              "pink-white",
-              "white-red",
-              "yellow-white"
-            ]
-          },
-          {
-            "part": "center",
-            "color": ["orange", "white-red", "yellow-white"]
-          },
-          { "part": "spathe", "color": ["green"] },
-          { "part": "flower", "color": ["pink-red", "red-pink"] },
-          { "part": "leaf", "color": ["green"] },
-          { "part": "stem", "color": ["yellow-green", "green"] }
-        ],
-        "sunlight": ["part sun/part shade"],
-        "pruning_month": ["May", "June", "July"],
-        "pruning_count": [],
-        "seeds": false,
+        "sunlight": "part shade",
         "maintenance": "Moderate",
-        "care_guides": "http://perenual.com/api/species-care-guide-list?species_id=855&key=sk-MFnY67bf34955572c8859",
-        "soil": [],
         "growth_rate": "High",
         "drought_tolerant": false,
-        "salt_tolerant": false,
         "thorny": false,
         "invasive": false,
         "tropical": false,
-        "indoor": true,
-        "care_level": "Medium",
-        "pest_susceptibility": [],
+        "pest_resistant": false,
         "flowers": true,
         "flowering_season": null,
-        "cones": false,
-        "fruits": false,
         "edible_fruit": false,
         "harvest_season": null,
-        "leaf": true,
         "edible_leaf": false,
-        "cuisine": false,
-        "medicinal": true,
+        "edible": false,
         "poisonous_to_humans": false,
         "poisonous_to_pets": false,
         "description": "Anthurium andraeanum is an amazing plant species for many reasons. It has a brightly coloured spathe, which can be orange, white and yellow, as well as long-lasting flowering. It is a long-lived species, and its blooms can remain intact for several months. This attractive plant is also easy to care for and can thrive in indirect light and humid environments. Its flowers bloom regularly and even if the plant is not fertilised, it can still keep thriving. Furthermore, the Anthurium andraeanum is perfect for those looking for a unique, eye-catching houseplant to add to their home. In conclusion, Anthurium andraeanum is a stunning and resilient species with distinctively vibrant flowers.",
-        "default_image": {
-          "license": 5,
-          "license_name": "Attribution-ShareAlike License",
-          "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
-          "original_url": "https://perenual.com/storage/species_image/855_anthurium_andraeanum/og/49388458462_0ef650db39_b.jpg",
-          "regular_url": "https://perenual.com/storage/species_image/855_anthurium_andraeanum/regular/49388458462_0ef650db39_b.jpg",
-          "medium_url": "https://perenual.com/storage/species_image/855_anthurium_andraeanum/medium/49388458462_0ef650db39_b.jpg",
-          "small_url": "https://perenual.com/storage/species_image/855_anthurium_andraeanum/small/49388458462_0ef650db39_b.jpg",
-          "thumbnail": "https://perenual.com/storage/species_image/855_anthurium_andraeanum/thumbnail/49388458462_0ef650db39_b.jpg"
-        },
-        "other_images": "Upgrade Plan To Supreme For Access https://perenual.com/subscription-api-pricing. Im sorry",
-        "xWateringQuality": "Upgrade Plan To Supreme For Access https://perenual.com/subscription-api-pricing. Im sorry",
-        "xWateringPeriod": "Upgrade Plan To Supreme For Access https://perenual.com/subscription-api-pricing. Im sorry",
-        "xWateringAvgVolumeRequirement": "Upgrade Plan To Supreme For Access https://perenual.com/subscription-api-pricing. Im sorry",
-        "xWateringDepthRequirement": "Upgrade Plan To Supreme For Access https://perenual.com/subscription-api-pricing. Im sorry",
-        "xWateringBasedTemperature": "Upgrade Plan To Supreme For Access https://perenual.com/subscription-api-pricing. Im sorry",
-        "xWateringPhLevel": "Upgrade Plan To Supreme For Access https://perenual.com/subscription-api-pricing. Im sorry",
-        "xSunlightDuration": "Upgrade Plan To Supreme For Access https://perenual.com/subscription-api-pricing. Im sorry",
-        "xTemperatureTolence": "Upgrade Plan To Supreme For Access https://perenual.com/subscription-api-pricing. Im sorry",
-        "xPlantSpacingRequirement": "Upgrade Plan To Supreme For Access https://perenual.com/subscription-api-pricing. Im sorry"
+        "default_image": "https://perenual.com/storage/species_image/855_anthurium_andraeanum/small/49388458462_0ef650db39_b.jpg"
       }
     }
   },
   "GET /api/users/:user_id": {
     "description": "retrives user information for a given id number",
-    "queries": ["user_id"],
+    "parameter": "user_id",
     "exampleResponse": {
       "user_id": 1,
       "username": "ReymundoCancer",
@@ -131,17 +46,21 @@
   },
   "POST /api/users": {
     "description": "posts a new user to users and returns user info",
-    "queries": ["username", "email", "geolocation"],
+    "example input": {
+      "username": "RachelJelly",
+      "email": "RachelJelly@yahoo.com",
+      "geolocation": "51.633476273314955, -0.765394936606981"
+    },
     "exampleResponse": {
       "user_id": 6,
       "username": "RachelJelly",
       "email": "RachelJelly@yahoo.com",
-      "geolocation": "expect.any(String)"
+      "geolocation": "51.633476273314955, -0.765394936606981"
     }
   },
   "GET /api/zones/:user_id": {
     "description": "retrives zone information for a given id number",
-    "queries": ["user_id"],
+    "parameter": "user_id",
     "exampleResponse": {
       "zones": [
         {
@@ -169,16 +88,10 @@
       "exampleResponse": {
         "zones": [
           {
-            "user": 2,
+            "user_key": 5,
             "is_outdoor": true,
-            "sun_level": "full sun",
-            "zone_name": "balcony"
-          },
-          {
-            "user": 2,
-            "is_outdoor": true,
-            "sun_level": "part shade",
-            "zone_name": "kitchen"
+            "sun_level": "full shade",
+            "zone_name": "garden"
           }
         ]
       }
@@ -186,124 +99,39 @@
   },
   "GET /api/users/:user_id/fave_plants": {
     "description": "retrives a given users favourited plants",
-    "queries": ["user_id"],
+    "parameter": "user_id",
     "exampleResponse": {
-      "855": {
-        "id": 855,
+      "plant": {
+        "plant_id": 855,
         "common_name": "anthurium",
-        "scientific_name": ["Anthurium andraeanum"],
-        "other_name": [],
-        "family": "Araceae",
-        "hybrid": null,
-        "authority": null,
-        "subspecies": null,
-        "cultivar": null,
-        "variety": null,
-        "species_epithet": "andraeanum",
-        "genus": "Anthurium",
-        "origin": [
-          "Colombia",
-          "Ecuador",
-          "Venezuelan Antilles",
-          "Windward Islands"
-        ],
+        "sci_name": "Anthurium andraeanum",
         "type": "Flower",
-        "dimensions": [
-          { "type": null, "min_value": 1, "max_value": 1.5, "unit": "feet" }
-        ],
         "cycle": "Herbaceous Perennial",
-        "attracts": [],
-        "propagation": [
-          "Division",
-          "Air Layering Propagation",
-          "Stem Propagation",
-          "Leaf Cutting",
-          "Seed Propagation"
-        ],
-        "hardiness": { "min": "11", "max": "12" },
-        "hardiness_location": {
-          "full_url": "https://perenual.com/api/hardiness-map?species_id=855&size=og&key=sk-MFnY67bf34955572c8859",
-          "full_iframe": "<iframe frameborder=0 scrolling=yes seamless=seamless width=1000 height=550 style='margin:auto;' src='https://perenual.com/api/hardiness-map?species_id=855&size=og&key=sk-MFnY67bf34955572c8859'></iframe>"
-        },
         "watering": "Average",
-        "watering_general_benchmark": { "value": null, "unit": "days" },
-        "plant_anatomy": [
-          { "part": "stalk", "color": ["green"] },
-          { "part": "leaves", "color": ["green"] },
-          { "part": "flowers", "color": ["red", "red-pink"] },
-          {
-            "part": "spadix",
-            "color": [
-              "yellow-white-orange",
-              "pink-white",
-              "white-red",
-              "yellow-white"
-            ]
-          },
-          {
-            "part": "center",
-            "color": ["orange", "white-red", "yellow-white"]
-          },
-          { "part": "spathe", "color": ["green"] },
-          { "part": "flower", "color": ["pink-red", "red-pink"] },
-          { "part": "leaf", "color": ["green"] },
-          { "part": "stem", "color": ["yellow-green", "green"] }
-        ],
-        "sunlight": ["part sun/part shade"],
-        "pruning_month": ["May", "June", "July"],
-        "pruning_count": [],
-        "seeds": false,
+        "sunlight": "part shade",
         "maintenance": "Moderate",
-        "care_guides": "http://perenual.com/api/species-care-guide-list?species_id=855&key=sk-MFnY67bf34955572c8859",
-        "soil": [],
         "growth_rate": "High",
         "drought_tolerant": false,
-        "salt_tolerant": false,
         "thorny": false,
         "invasive": false,
         "tropical": false,
-        "indoor": true,
-        "care_level": "Medium",
-        "pest_susceptibility": [],
+        "pest_resistant": false,
         "flowers": true,
         "flowering_season": null,
-        "cones": false,
-        "fruits": false,
         "edible_fruit": false,
         "harvest_season": null,
-        "leaf": true,
         "edible_leaf": false,
-        "cuisine": false,
-        "medicinal": true,
+        "edible": false,
         "poisonous_to_humans": false,
         "poisonous_to_pets": false,
         "description": "Anthurium andraeanum is an amazing plant species for many reasons. It has a brightly coloured spathe, which can be orange, white and yellow, as well as long-lasting flowering. It is a long-lived species, and its blooms can remain intact for several months. This attractive plant is also easy to care for and can thrive in indirect light and humid environments. Its flowers bloom regularly and even if the plant is not fertilised, it can still keep thriving. Furthermore, the Anthurium andraeanum is perfect for those looking for a unique, eye-catching houseplant to add to their home. In conclusion, Anthurium andraeanum is a stunning and resilient species with distinctively vibrant flowers.",
-        "default_image": {
-          "license": 5,
-          "license_name": "Attribution-ShareAlike License",
-          "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
-          "original_url": "https://perenual.com/storage/species_image/855_anthurium_andraeanum/og/49388458462_0ef650db39_b.jpg",
-          "regular_url": "https://perenual.com/storage/species_image/855_anthurium_andraeanum/regular/49388458462_0ef650db39_b.jpg",
-          "medium_url": "https://perenual.com/storage/species_image/855_anthurium_andraeanum/medium/49388458462_0ef650db39_b.jpg",
-          "small_url": "https://perenual.com/storage/species_image/855_anthurium_andraeanum/small/49388458462_0ef650db39_b.jpg",
-          "thumbnail": "https://perenual.com/storage/species_image/855_anthurium_andraeanum/thumbnail/49388458462_0ef650db39_b.jpg"
-        },
-        "other_images": "Upgrade Plan To Supreme For Access https://perenual.com/subscription-api-pricing. Im sorry",
-        "xWateringQuality": "Upgrade Plan To Supreme For Access https://perenual.com/subscription-api-pricing. Im sorry",
-        "xWateringPeriod": "Upgrade Plan To Supreme For Access https://perenual.com/subscription-api-pricing. Im sorry",
-        "xWateringAvgVolumeRequirement": "Upgrade Plan To Supreme For Access https://perenual.com/subscription-api-pricing. Im sorry",
-        "xWateringDepthRequirement": "Upgrade Plan To Supreme For Access https://perenual.com/subscription-api-pricing. Im sorry",
-        "xWateringBasedTemperature": "Upgrade Plan To Supreme For Access https://perenual.com/subscription-api-pricing. Im sorry",
-        "xWateringPhLevel": "Upgrade Plan To Supreme For Access https://perenual.com/subscription-api-pricing. Im sorry",
-        "xSunlightDuration": "Upgrade Plan To Supreme For Access https://perenual.com/subscription-api-pricing. Im sorry",
-        "xTemperatureTolence": "Upgrade Plan To Supreme For Access https://perenual.com/subscription-api-pricing. Im sorry",
-        "xPlantSpacingRequirement": "Upgrade Plan To Supreme For Access https://perenual.com/subscription-api-pricing. Im sorry"
+        "default_image": "https://perenual.com/storage/species_image/855_anthurium_andraeanum/small/49388458462_0ef650db39_b.jpg"
       }
     }
   },
   "POST /api/users/:user_id/fave_plants": {
     "description": "posts a plant to a given users faourites",
-    "queries": ["user_id", "plant_id"],
+    "exampleInput": { "user": 2, "plant": 1001 },
     "exampleResponse": {
       "favourite_plant_key": 4,
       "user_key": 2,
@@ -312,7 +140,7 @@
   },
   "GET /api/users/:user_id/owned_plants": {
     "description": "retrives a given users owned plants and the zone they are in",
-    "queries": ["user_id"],
+    "parameter": "user_id",
     "exampleResponse": {
       "plant_id": 855,
       "common_name": "anthurium",
@@ -343,6 +171,7 @@
   },
   "POST /api/users/:user_id/owned_plants": {
     "description": "posts a plant to a given users owned list",
+    "parameter": "user_id",
     "exampleInput": {
       "user": "user_id",
       "plant": "plant_id",
@@ -353,70 +182,113 @@
       "user_key": 2,
       "plant_key": 1001
     }
-
   },
   "GET /api/plants": {
     "description": "retrieves an array of all plant objects from api and takes filtering queries",
-    "queries": ["common_name", "tropical", "sunlight", "maintenance", "poisonous_to_humans", "poisonous_to_pets", "edible_fruit", "edible_leaf", "flowers"],
-    "exampleResponse":
-    [{
-     " plant_id": 1821,
-      "common_name": "chamaedorea",
-      "sci_name": "Chamaedorea microspadix",
-      "type": "Palm or Cycad",
-      "cycle": "Perennial",
-      "attracts": null,
-      "watering": "Frequent",
-      "sunlight": "part shade",
-      "maintenance": "Low",
-      "growth_rate": "Low",
-      "drought_tolerant": true,
-      "thorny": false,
-     "invasive": false,
-      "tropical": false,
-     "care_level": "Medium",
-      "pest_resistant": false,
-      "flowers": true,
-     " flowering_season": null,
-      "edible_fruit": false,
-      "harvest_season": null,
-      "edible_leaf": false,
-      "cuisine": false,
-     " poisonous_to_humans": false,
-      "poisonous_to_pets": false,
-      "description": "Chamaedorea microspadix is an incredible plant species! With its slender, deep green leaves and delicate white stripes near the midrib of each leaf, it adds a unique touch to any space. It is a very low-maintenance plant, requiring little more than a misting from a spray bottle. Additionally, it is tolerant to low light, though it thrives in bright, indirect light. With fuss-free care and striking foliage, this plant makes a perfect addition to any home.",
-      "default_image": "https://perenual.com/storage/species_image/1821_chamaedorea_microspadix/small/26815590515_805ab5b081_b.jpg"
-    },
-    {
-      "plant_id": 1598,
-      "common_name": "ornamental pepper",
-     " sci_name": "Capsicum annuum 'Chinese Five Color'",
-      "type": "Fruit",
-      "cycle": "Herbaceous Perennial",
-      "attracts": null,
-      "watering": "Frequent",
-      "sunlight": "full sun",
-      "maintenance": "Low",
-      "growth_rate": "Low",
-     " drought_tolerant": false,
-      "thorny": false,
-      "invasive": false,
-      "tropical": false,
-      "care_level": "Medium",
-      "pest_resistant": false,
-     " flowers": true,
-      "flowering_season": null,
-      "edible_fruit": false,
-      "harvest_season": "Summer",
-      "edible_leaf": true,
-      "cuisine": false,
-      "poisonous_to_humans": false,
-      "poisonous_to_pets": false,
-      "description": "The ornamental pepper (Capsicum annuum 'Chinese Five Color') is an amazing plant that adds vibrancy and texture to any garden. Thanks to its unique twist on traditional peppers, this variety features five colors: dark green, creamy-white, pale yellow, orange, and red. It adds a vibrant hue to the garden with its dynamic color combination, creating an eye-catching and evocative display. This pepper produces very few fruits, making it an ideal ornamental plant. It also has a good drought tolerance, making it great for those living in dry climates. This hardy pepper is an easy-care, low-maintenance plant that brings beauty to any garden!",
-      "default_image": "noImg"
+    "queries": [
+      "common_name",
+      "tropical",
+      "sunlight",
+      "maintenance",
+      "poisonous_to_humans",
+      "poisonous_to_pets",
+      "edible_fruit",
+      "edible_leaf",
+      "flowers"
+    ],
+    "exampleResponse": {
+      "plants": [
+        {
+          "plant_id": 1038,
+          "common_name": "bird's nest fern",
+          "sci_name": "Asplenium nidus 'Antiquum'",
+          "type": "Fern",
+          "cycle": "Perennial",
+          "watering": "Average",
+          "sunlight": "full sun",
+          "maintenance": "Moderate",
+          "growth_rate": "Low",
+          "drought_tolerant": false,
+          "thorny": false,
+          "invasive": false,
+          "tropical": true,
+          "pest_resistant": false,
+          "flowers": true,
+          "flowering_season": null,
+          "edible_fruit": false,
+          "harvest_season": null,
+          "edible_leaf": false,
+          "edible": false,
+          "poisonous_to_humans": false,
+          "poisonous_to_pets": false,
+          "description": "The Bird's Nest Fern (Asplenium nidus 'Antiquum') is a rare and unique species of fern that is a must-have addition to anytropical garden. Its stunning, wide-spreading fronds make it an attractive focal point, while its resistance to pests and diseases make it perfect for busy gardeners. Its foliage is a delight - deep green and glossy, with leathery leaves that are ruffled along the edges. Its yellow patches on the fronds add further to its aesthetic appeal and help it blend into other foliage. Its ability to adapt to different environments makes it a great choice for both indoor and outdoor spaces, making it a great choice for any tropical themed garden.",
+          "default_image": "https://perenual.com/storage/species_image/1038_asplenium_nidus_antiquum/small/29457334967_82a2d8789c_b.jpg"
+        },
+        {
+          "plant_id": 425,
+          "common_name": "flowering-maple",
+          "sci_name": "Abutilon hybridum",
+          "type": "Broadleaf evergreen",
+          "cycle": "Perennial",
+          "watering": "Frequent",
+          "sunlight": "full sun",
+          "maintenance": "Low",
+          "growth_rate": "Low",
+          "drought_tolerant": true,
+          "thorny": true,
+          "invasive": false,
+          "tropical": true,
+          "pest_resistant": false,
+          "flowers": true,
+          "flowering_season": null,
+          "edible_fruit": false,
+          "harvest_season": null,
+          "edible_leaf": false,
+          "edible": false,
+          "poisonous_to_humans": false,
+          "poisonous_to_pets": false,
+          "description": "The Flowering Maple (Abutilon hybridum) is an amazing plant species for its hardiness, its unique flowers, and its ability to brighten up any landscape. It's a very low maintenance plant that flourishes in full sun and well drained soils. Its flowers are very striking and come in many different colors - the most common being white and yellow, with a contrasting dark center. This plant is ideal for those looking to add some vibrant color to their gardens without a lot of work. It can easily grow up to six feet and can even tolerate partial shade. The Flowering Maple is definitely an attention-grabber and will be sure to make any garden stand out.",
+          "default_image": "https://perenual.com/storage/species_image/425_abutilon_hybridum/small/24527654869_ac712f58c7_b.jpg"
+        },
+        {
+          "plant_id": 427,
+          "common_name": "flowering-maple",
+          "sci_name": "Abutilon 'Moonchimes'",
+          "type": "Broadleaf evergreen",
+          "cycle": "Perennial",
+          "watering": "Average",
+          "sunlight": "full sun",
+          "maintenance": "Low",
+          "growth_rate": "Low",
+          "drought_tolerant": true,
+          "thorny": false,
+          "invasive": false,
+          "tropical": true,
+          "pest_resistant": false,
+          "flowers": true,
+          "flowering_season": null,
+          "edible_fruit": false,
+          "harvest_season": null,
+          "edible_leaf": false,
+          "edible": false,
+          "poisonous_to_humans": false,
+          "poisonous_to_pets": false,
+          "description": "The flowering-maple (Abutilon 'Moonchimes') is an amazing plant species with unique flowers for any garden. It produces purple, bell-shaped flowers with white and yellow highlights that simply mesmerize in the summer sun. The leaves are large and maple-shaped, which adds a nice contrast with the bell-shaped flowers. It's a great addition to any garden due to its beauty, low-maintenance needs, andzone 6 hardiness. Furthermore, it grows a well in both full sun or partial shade, making it an ideal choice for a variety of garden spaces. Get your own flowering-maple today and enjoy its special beauty in your own backyard.",
+          "default_image": "https://perenual.com/storage/species_image/427_abutilon_moonchimes/small/Abutilon_x_hybridum_27Moonchimes27_Flower_2800px.jpg"
+        }
+      ]
     }
-  ]
-
-
+  },
+  "PATCH  /api/users/:user_id/water": {
+    "description": "updates a plants watered date",
+    "parameter": "user_id",
+    "exampleInput": { "plant_id": 1025, "date": "2025-03-07" },
+    "exampleResponse": {
+      "owned_plant_key": 2,
+      "user_key": 2,
+      "plant_key": 1025,
+      "zone_key": 2,
+      "last_watered": "2025-03-07"
+    }
   }
 }
