@@ -1,4 +1,8 @@
-const { fetchZonesByUserID, insertZone } = require("../models/zonesModel");
+const {
+  fetchZonesByUserID,
+  insertZone,
+  removeZone,
+} = require("../models/zonesModel");
 
 const getZonesByUserId = (req, res, next) => {
   const { user_id } = req.params;
@@ -26,4 +30,16 @@ const postZone = (req, res, next) => {
     });
 };
 
-module.exports = { getZonesByUserId, postZone };
+const deleteZone = (req, res, next) => {
+  const { zone_id } = req.params;
+
+  return removeZone(zone_id)
+    .then(() => {
+      res.status(204).sendStatus(204);
+    })
+    .catch((err) => {
+      next(err);
+    });
+};
+
+module.exports = { getZonesByUserId, postZone, deleteZone };

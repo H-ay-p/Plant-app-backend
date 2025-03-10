@@ -589,3 +589,25 @@ describe("PATCH /api/users/:user_id/water", () => {
       });
   });
 });
+
+describe("DELETE /api/zones/:zone_id", () => {
+  test("204: returns correct status and no content", () => {
+    return request(app)
+      .delete("/api/zones/2")
+      .expect(204)
+      .then((res) => {
+        expect(res.body).toEqual({});
+      });
+  });
+});
+
+describe("DELETE /api/users/owned_plants/:owned_plant_id", () => {
+  test("204: returns correct status and no content", () => {
+    return request(app)
+      .delete("/api/users/owned_plants/1")
+      .expect(204)
+      .then((res) => {
+        expect(res.body).toEqual({});
+      });
+  });
+});

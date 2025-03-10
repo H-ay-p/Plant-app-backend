@@ -48,10 +48,11 @@ const addFavePlant = (user, plant) => {
 const fetchOwnedPlants = (user_id) => {
   return db
     .query(
-      `SELECT plants.* , owned_plants.zone_key, zones.zone_name
+      `SELECT plants.* , owned_plants.zone_key, zones.zone_name, owned_plants.owned_plant_key
         FROM owned_plants
         JOIN plants ON owned_plants.plant_key = plants.plant_id
         JOIN zones ON owned_plants.zone_key = zones.zone_id
+
         WHERE owned_plants.user_key = $1;`,
       [user_id]
     )
@@ -201,6 +202,10 @@ const updateWaterDate = (plant_id, date, user_id) => {
     });
 };
 
+const removeOwnedPlant = (id) => {
+  return db.query("DELETE FROM owned_plants WHERE owned_plant_key = $1", [id]);
+};
+
 module.exports = {
   fetchPlantById,
   fetchFavePlants,
@@ -209,4 +214,5 @@ module.exports = {
   addOwnedPlant,
   fetchPlants,
   updateWaterDate,
+  removeOwnedPlant,
 };

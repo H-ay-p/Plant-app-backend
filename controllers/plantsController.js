@@ -6,6 +6,7 @@ const {
   addOwnedPlant,
   fetchPlants,
   updateWaterDate,
+  removeOwnedPlant,
 } = require("../models/plantsModel");
 
 const getPlantByID = (req, res, next) => {
@@ -94,9 +95,25 @@ const getPlants = (req, res, next) => {
 const patchWaterDate = (req, res, next) => {
   const { plant_id, date } = req.body;
   const { user_id } = req.params;
-  updateWaterDate(plant_id, date, user_id).then((plant) => {
-    res.status(200).send(plant);
-  });
+  updateWaterDate(plant_id, date, user_id)
+    .then((plant) => {
+      res.status(200).send(plant);
+    })
+    .catch((err) => {
+      next(err);
+    });
+};
+
+const deleteOwnedPlant = (req, res, next) => {
+  const { owned_plant_id } = req.params;
+  console.log(owned_plant_id);
+  return removeOwnedPlant(owned_plant_id)
+    .then(() => {
+      res.status(204).sendStatus(204);
+    })
+    .catch((err) => {
+      next(err);
+    });
 };
 
 module.exports = {
@@ -107,4 +124,5 @@ module.exports = {
   postOwnedPlant,
   getPlants,
   patchWaterDate,
+  deleteOwnedPlant,
 };

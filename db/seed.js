@@ -127,7 +127,7 @@ function createOwnedPlants() {
     last_watered VARCHAR,
     FOREIGN KEY (user_key) REFERENCES users(user_id),
     FOREIGN KEY (plant_key) REFERENCES plants(plant_id),
-    FOREIGN KEY (zone_key) REFERENCES zones(zone_id))
+    FOREIGN KEY (zone_key) REFERENCES zones(zone_id)ON DELETE CASCADE)
 `);
 }
 
