@@ -125,7 +125,8 @@
         "poisonous_to_humans": false,
         "poisonous_to_pets": false,
         "description": "Anthurium andraeanum is an amazing plant species for many reasons. It has a brightly coloured spathe, which can be orange, white and yellow, as well as long-lasting flowering. It is a long-lived species, and its blooms can remain intact for several months. This attractive plant is also easy to care for and can thrive in indirect light and humid environments. Its flowers bloom regularly and even if the plant is not fertilised, it can still keep thriving. Furthermore, the Anthurium andraeanum is perfect for those looking for a unique, eye-catching houseplant to add to their home. In conclusion, Anthurium andraeanum is a stunning and resilient species with distinctively vibrant flowers.",
-        "default_image": "https://perenual.com/storage/species_image/855_anthurium_andraeanum/small/49388458462_0ef650db39_b.jpg"
+        "default_image": "https://perenual.com/storage/species_image/855_anthurium_andraeanum/small/49388458462_0ef650db39_b.jpg",
+        "favourite_plant_id": 1
       }
     }
   },
@@ -301,6 +302,11 @@
   "DELETE  /api/users/owned_plants/:owned_plant_id": {
     "description": "deletes a specific owned plant",
     "parameter": "owned_plant_id",
+    "exampleResponse": "no response"
+  },
+  "DELETE  /api/users/fave_plants/:favourite_plant_id": {
+    "description": "deletes a specific favourited plant",
+    "parameter": "favourite_plant_id",
     "exampleResponse": "no response"
   },
   "PATCH  /api/plants/price/price/:plant_id": {
