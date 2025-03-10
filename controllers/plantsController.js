@@ -7,6 +7,7 @@ const {
   fetchPlants,
   updateWaterDate,
   removeOwnedPlant,
+  updatePlantPrice,
 } = require("../models/plantsModel");
 
 const getPlantByID = (req, res, next) => {
@@ -116,6 +117,18 @@ const deleteOwnedPlant = (req, res, next) => {
     });
 };
 
+const patchPlantPrice = (req, res, next) => {
+  const { price } = req.body;
+  const plant_id = req.params.plant_id;
+  updatePlantPrice(plant_id, price)
+    .then((plant) => {
+      res.status(200).send(plant);
+    })
+    .catch((err) => {
+      next(err);
+    });
+};
+
 module.exports = {
   getPlantByID,
   getFavePlants,
@@ -125,4 +138,5 @@ module.exports = {
   getPlants,
   patchWaterDate,
   deleteOwnedPlant,
+  patchPlantPrice,
 };

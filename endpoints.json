@@ -275,7 +275,8 @@
           "poisonous_to_humans": false,
           "poisonous_to_pets": false,
           "description": "The flowering-maple (Abutilon 'Moonchimes') is an amazing plant species with unique flowers for any garden. It produces purple, bell-shaped flowers with white and yellow highlights that simply mesmerize in the summer sun. The leaves are large and maple-shaped, which adds a nice contrast with the bell-shaped flowers. It's a great addition to any garden due to its beauty, low-maintenance needs, andzone 6 hardiness. Furthermore, it grows a well in both full sun or partial shade, making it an ideal choice for a variety of garden spaces. Get your own flowering-maple today and enjoy its special beauty in your own backyard.",
-          "default_image": "https://perenual.com/storage/species_image/427_abutilon_moonchimes/small/Abutilon_x_hybridum_27Moonchimes27_Flower_2800px.jpg"
+          "default_image": "https://perenual.com/storage/species_image/427_abutilon_moonchimes/small/Abutilon_x_hybridum_27Moonchimes27_Flower_2800px.jpg",
+          "price": "null"
         }
       ]
     }
@@ -301,5 +302,37 @@
     "description": "deletes a specific owned plant",
     "parameter": "owned_plant_id",
     "exampleResponse": "no response"
+  },
+  "PATCH  /api/plants/price/price/:plant_id": {
+    "description": "updates a plants price and returns plant object",
+    "parameter": "plant_id",
+    "exampleInput": { "price": 4.99 },
+    "exampleResponse": {
+      "plant_id": 1025,
+      "common_name": "flowering-maple",
+      "sci_name": "Abutilon 'Moonchimes'",
+      "type": "Broadleaf evergreen",
+      "cycle": "Perennial",
+      "watering": "Average",
+      "sunlight": "full sun",
+      "maintenance": "Low",
+      "growth_rate": "Low",
+      "drought_tolerant": true,
+      "thorny": false,
+      "invasive": false,
+      "tropical": true,
+      "pest_resistant": false,
+      "flowers": true,
+      "flowering_season": null,
+      "edible_fruit": false,
+      "harvest_season": null,
+      "edible_leaf": false,
+      "edible": false,
+      "poisonous_to_humans": false,
+      "poisonous_to_pets": false,
+      "description": "The flowering-maple (Abutilon 'Moonchimes') is an amazing plant species with unique flowers for any garden. It produces purple, bell-shaped flowers with white and yellow highlights that simply mesmerize in the summer sun. The leaves are large and maple-shaped, which adds a nice contrast with the bell-shaped flowers. It's a great addition to any garden due to its beauty, low-maintenance needs, andzone 6 hardiness. Furthermore, it grows a well in both full sun or partial shade, making it an ideal choice for a variety of garden spaces. Get your own flowering-maple today and enjoy its special beauty in your own backyard.",
+      "default_image": "https://perenual.com/storage/species_image/427_abutilon_moonchimes/small/Abutilon_x_hybridum_27Moonchimes27_Flower_2800px.jpg",
+      "price": "4.99"
+    }
   }
 }

@@ -112,7 +112,7 @@ function createPlants() {
     poisonous_to_pets BOOLEAN,
     description VARCHAR,
     default_image VARCHAR,
-    price VARCHAR
+    price FLOAT
     )`
   );
 }
