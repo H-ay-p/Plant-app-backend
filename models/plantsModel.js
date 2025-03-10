@@ -17,7 +17,7 @@ const fetchPlantById = (plant_id) => {
 const fetchFavePlants = (user_id) => {
   return db
     .query(
-      `SELECT plants.* 
+      `SELECT plants.* , favourited_plants.favourite_plant_key
         FROM favourited_plants
         JOIN plants ON favourited_plants.plant_key = plants.plant_id
         WHERE favourited_plants.user_key = $1;`,
@@ -206,6 +206,13 @@ const removeOwnedPlant = (id) => {
   return db.query("DELETE FROM owned_plants WHERE owned_plant_key = $1", [id]);
 };
 
+const removeFavePlant = (id) => {
+  return db.query(
+    "DELETE FROM favourited_plants WHERE favourite_plant_key = $1",
+    [id]
+  );
+};
+
 const updatePlantPrice = (plant_id, price) => {
   return db
     .query("UPDATE plants SET price = $1 WHERE plant_id = $2 RETURNING *", [
@@ -227,4 +234,5 @@ module.exports = {
   updateWaterDate,
   removeOwnedPlant,
   updatePlantPrice,
+  removeFavePlant,
 };

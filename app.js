@@ -13,6 +13,7 @@ const {
   patchWaterDate,
   deleteOwnedPlant,
   patchPlantPrice,
+  deleteFavePlant,
 } = require("./controllers/plantsController");
 const { getUserByID, postNewUser } = require("./controllers/usersController");
 const {
@@ -50,8 +51,10 @@ app.post("/api/users/:user_id/fave_plants", postFavePlants);
 app.get("/api/users/:user_id/owned_plants", getOwnedPlants);
 app.post("/api/users/:user_id/owned_plants", postOwnedPlant);
 app.delete("/api/users/owned_plants/:owned_plant_id", deleteOwnedPlant);
+app.delete("/api/users/fave_plants/:favourite_plant_id", deleteFavePlant);
 app.delete("/api/zones/:zone_id", deleteZone);
 app.patch("/api/plants/price/:plant_id", patchPlantPrice);
+
 app.all("*", (req, res) => {
   res.status(404).send({ error: "Endpoint not found" });
 });

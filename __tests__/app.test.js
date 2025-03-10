@@ -624,3 +624,14 @@ describe("PATCH /api/plants/price/:plant_id", () => {
       });
   });
 });
+
+describe("DELETE /api/users/fave_plants/:favourite_plant_id", () => {
+  test("204: returns correct status and no content", () => {
+    return request(app)
+      .delete("/api/users/fave_plants/1")
+      .expect(204)
+      .then((res) => {
+        expect(res.body).toEqual({});
+      });
+  });
+});
