@@ -611,3 +611,16 @@ describe("DELETE /api/users/owned_plants/:owned_plant_id", () => {
       });
   });
 });
+
+describe("PATCH /api/plants/price/:plant_id", () => {
+  test("should update the price on sepcified plants", () => {
+    const updateObj = { price: 4.99 };
+    return request(app)
+      .patch("/api/plants/price/1025")
+      .send(updateObj)
+      .expect(200)
+      .then((response) => {
+        expect(response.body[0].price).toEqual(4.99);
+      });
+  });
+});

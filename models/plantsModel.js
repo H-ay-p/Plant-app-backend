@@ -206,6 +206,17 @@ const removeOwnedPlant = (id) => {
   return db.query("DELETE FROM owned_plants WHERE owned_plant_key = $1", [id]);
 };
 
+const updatePlantPrice = (plant_id, price) => {
+  return db
+    .query("UPDATE plants SET price = $1 WHERE plant_id = $2 RETURNING *", [
+      price,
+      plant_id,
+    ])
+    .then((plant) => {
+      return plant.rows;
+    });
+};
+
 module.exports = {
   fetchPlantById,
   fetchFavePlants,
@@ -215,4 +226,5 @@ module.exports = {
   fetchPlants,
   updateWaterDate,
   removeOwnedPlant,
+  updatePlantPrice,
 };
