@@ -600,3 +600,14 @@ describe("DELETE /api/zones/:zone_id", () => {
       });
   });
 });
+
+describe("DELETE /api/users/owned_plants/:owned_plant_id", () => {
+  test("204: returns correct status and no content", () => {
+    return request(app)
+      .delete("/api/users/owned_plants/1")
+      .expect(204)
+      .then((res) => {
+        expect(res.body).toEqual({});
+      });
+  });
+});
