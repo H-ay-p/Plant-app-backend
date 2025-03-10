@@ -25,4 +25,8 @@ const insertZone = (user_key, is_outdoor, sun_level, zone_name) => {
     });
 };
 
-module.exports = { fetchZonesByUserID, insertZone };
+const removeZone = (id) => {
+  return db.query("DELETE FROM zones WHERE zone_id = $1", [id]);
+};
+
+module.exports = { fetchZonesByUserID, insertZone, removeZone };
