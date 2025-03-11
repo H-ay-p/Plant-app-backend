@@ -635,3 +635,56 @@ describe("DELETE /api/users/fave_plants/:favourite_plant_id", () => {
       });
   });
 });
+
+describe("GET /api/users", () => {
+  test("should respond with an array of users object", () => {
+    return request(app)
+      .get("/api/users/")
+      .expect(200)
+      .then((response) => {
+        const body = response.body;
+        expect(body.users.length).toBe(5);
+
+        body.users.forEach((user) => {
+          expect(typeof user.username).toBe("string");
+          expect(typeof user.email).toBe("string");
+          expect(typeof user.geolocation).toBe("string");
+        });
+      });
+  });
+});
+
+describe("GET /api/users/email/:email", () => {
+  test("200: should respond with the correct user information", () => {
+    return request(app)
+      .get("/api/users/email/Reymundo15@yahoo.com")
+      .expect(200)
+      .then((response) => {
+        const body = response.body;
+        expect(body.user).toMatchObject({
+          user_id: 1,
+          username: "ReymundoCancer",
+          email: "Reymundo15@yahoo.com",
+          geolocation: expect.any(String),
+        });
+      });
+  });
+
+  test("400: id not a email", () => {
+    return request(app)
+      .get("/api/users/email/123notanemail")
+      .expect(400)
+      .then((response) => {
+        expect(response.body.error).toBe("Bad Request");
+      });
+  });
+
+  test("404: no user with that email", () => {
+    return request(app)
+      .get("/api/users/email/testing@gmail.com")
+      .expect(404)
+      .then((response) => {
+        expect(response.body.error).toBe("No user associated with this email");
+      });
+  });
+});
