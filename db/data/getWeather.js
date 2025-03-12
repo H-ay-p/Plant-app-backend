@@ -1,4 +1,4 @@
-const key = "25e2198b305c4bc5bf7122151252602"
+const key = "c8fd269cfa37496d886101905251203"
 
 
 function getWeather() {
