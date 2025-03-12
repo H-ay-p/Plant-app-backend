@@ -48,7 +48,7 @@ const addFavePlant = (user, plant) => {
 const fetchOwnedPlants = (user_id) => {
   return db
     .query(
-      `SELECT plants.* , owned_plants.zone_key, zones.zone_name, owned_plants.owned_plant_key
+      `SELECT plants.* , owned_plants.zone_key, zones.zone_name, owned_plants.owned_plant_key, owned_plants.last_watered
         FROM owned_plants
         JOIN plants ON owned_plants.plant_key = plants.plant_id
         JOIN zones ON owned_plants.zone_key = zones.zone_id
