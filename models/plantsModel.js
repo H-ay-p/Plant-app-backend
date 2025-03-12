@@ -183,7 +183,7 @@ const addOwnedPlant = (user, plant, zone) => {
   return db
     .query(
       `INSERT INTO owned_plants (user_key, plant_key, zone_key, last_watered) VALUES ($1, $2,$3,$4) RETURNING *`,
-      [user, plant, zone, "2024-03-06"]
+      [user, plant, zone, "2025-03-06"]
     )
     .then(({ rows }) => {
       return rows[0];
